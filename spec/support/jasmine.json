@@ -1,0 +1,12 @@
+{
+  "spec_dir": "./api/spec",
+  "spec_files": [
+  	"spec.routes.js",
+    "**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}
