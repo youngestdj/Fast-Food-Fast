@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-init": "jasmine init",
-    "test": "jasmine",
+    "test": "jasmine tests/spec.*.js",
     "start": "nodemon app.js",
     "build": "babel api -d lib",
     "lint": "eslint ./api --fix"
