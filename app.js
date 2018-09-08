@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const routes = require('./api/routes/routes.js')(app);
+const routes = require('./lib/routes/routes.js')(app);
 
 const server = app.listen(3001, () => {
   console.log('Listening on port %s...', server.address().port);
