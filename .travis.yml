@@ -1,9 +1,9 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=6b9dca1f9f0070c2ea399ce8a5ead0c5eb8f1995d716dc014ad64ada5f659a62
 language: node_js
 node_js:
   - "8"
-addons:
-  code_climate:
-    repo_token: 6b9dca1f9f0070c2ea399ce8a5ead0c5eb8f1995d716dc014ad64ada5f659a62
 script: npm run test
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
