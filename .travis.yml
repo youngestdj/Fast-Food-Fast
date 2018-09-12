@@ -4,7 +4,7 @@ node_js:
 addons:
   code_climate:
     repo_token: 6b9dca1f9f0070c2ea399ce8a5ead0c5eb8f1995d716dc014ad64ada5f659a62
-script: istanbul cover npm run test
+script: npm run test
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
