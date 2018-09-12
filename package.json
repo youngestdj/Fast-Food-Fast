@@ -8,7 +8,10 @@
     "test": "jasmine lib/spec/spec.*.js",
     "start": "node app.js",
     "build": "babel api -d lib",
-    "lint": "eslint ./api --fix"
+    "lint": "eslint ./api --fix",
+    "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js lib/spec/spec.*.js",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+
   },
   "engines": {
     "node": "8.11.3",
@@ -43,6 +46,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "istanbul": "^0.4.5"
   }
 }
