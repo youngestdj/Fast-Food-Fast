@@ -6,7 +6,7 @@
   "scripts": {
     "test-init": "jasmine init",
     "test": "jasmine lib/spec/spec.*.js",
-    "start": "node app.js",
+    "start": "node server.js",
     "build": "babel api -d lib",
     "lint": "eslint ./api --fix",
     "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js lib/spec/spec.*.js",
