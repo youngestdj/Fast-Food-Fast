@@ -1,0 +1,231 @@
+@font-face {
+font-family: ptSans;
+font-style: normal;
+font-weight: normal;
+src: url("../fonts/PT_Sans-Web-Regular.ttf") format("opentype");
+}
+@font-face {
+font-family: "Lato Bold";
+font-style: normal;
+font-weight: normal;
+src: url("../fonts/Lato-Bold.ttf") format("opentype");
+}
+
+body {
+	font-family: ptSans;
+	font-size: 1.1em;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+nav {
+	background: #f6f6f6;
+	padding: 5px 0;
+	border-bottom: #ccc 1px solid;
+	box-shadow: 0px 0px 1px 2px #eee;
+}
+a {
+	transition: all  ease-in-out 0.4s;
+}
+::placeholder {
+    color: #aaa;
+    opacity: 1; 
+}
+h1, .links {
+	font-family: Lato Bold;
+}
+fieldset {
+	margin-bottom: 50px;
+}
+img {
+	max-width: 100%;
+}
+.container {
+	width: 85%;
+	margin: auto;
+}
+.logo {
+	color: #FF0099;
+	font-weight: bolder;
+	font-size: 1.5em;
+	display: inline-block;
+}
+.links {
+	display: inline-block;
+	padding: 5px 0;
+	float: right;
+}
+.links a {
+	margin-left: 20px;
+	color: #555;
+	font-weight: bold;
+	text-decoration: none;
+}
+.links a:hover {
+	color: #f50;
+}
+.form-group, .order-group {
+	width: 400px;
+	margin: 100px auto;
+	text-align: center;
+}
+.form-group input, button {
+	display: inline-block;
+	width: 100%;
+	padding: 15px 25px;
+	margin: 0;
+    box-sizing: border-box;
+    margin: 3px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: all  ease-in-out 0.4s;
+    box-shadow: 0px 0px 1px 2px #fff;
+
+}
+.form-group input:focus {
+	outline-style:none;
+	border: #2cF solid 1px;
+    box-shadow: 0px 0px 1px 1px #2cF;
+}
+.form-group input[type=submit], button {
+	background: #FF0099;
+	color: #fff;
+	font-weight: bold;
+	font-size: 1em; 
+	cursor: pointer;
+}
+.form-group input[type=submit]:hover, button:hover {
+	background: #f50;
+}
+.order-group {
+	width: 50%;
+	margin-bottom: 0;
+}
+.food-item {
+	background-color: #f6f6f6;
+	padding: 10px 20px;
+	margin-bottom: 5px;
+	text-align: left;
+}
+.username {
+	color: #f50;
+}
+.food-name {
+	font-weight: bold;
+	padding-left: 10px;
+	width: 30%;
+	text-align: left;
+	display: inline-block;
+	font-size: 0.9em;
+}
+.amount, .quantity {
+	padding-right: 20px;
+	color: #999;
+	width: 10%;
+	font-size: 0.9em;
+}
+.food-item input[type=number], .amount {
+	padding: 5px 5px;
+	text-align: center;
+	float: right;
+	width: 20%;
+}
+.decline, .logout {
+	color: #f00;
+	font-size: 0.8em;
+}
+.decline:hover, .logout:hover {
+	text-decoration: none;
+}
+a.logout {
+	text-decoration: underline;
+}
+.total {
+	font-weight: bold;
+}
+.home-title {
+	display: inline-block;
+	width: 50%;
+	color: #fff;
+}
+.home-title h1 {
+	font-size: 7em;
+	margin: 0 0 100px;
+}
+.home-img {
+	float: right;
+	width: 48%;
+	display: inline-block;
+}
+.home {
+	padding:50px 0 100px;
+}
+.purple {
+	background: #ff0084;
+	background: -webkit-linear-gradient(to right, #33001b, #ff0084);
+	background: linear-gradient(to right, #33001b, #ff0084);
+}
+
+
+@media(max-width:768px){
+	.container {
+		width: 90%;
+	}
+	.order-group {
+	width: 90%;
+	}
+	.links a {
+	font-size: 0.9em;
+	margin-left: 10px;
+	}
+	.welcome {
+		display: none;
+	}
+	.home-title h1 {
+		font-size: 5em;
+	}
+
+}
+
+@media(max-width:480px){
+	.form-group {
+		width: 90%;
+	}
+	.links a {
+	font-size: 0.9em;
+	margin-left: 10px;
+	}
+	.order-group {
+	width: 100%;
+	}
+	.username, .welcome {
+		display: none;
+	}
+	.quantity{
+		width: 5%;
+	}
+	.food-item {
+		padding: 10px 2px;
+	}
+	.home-title h1 {
+		width: 100%;
+		display: block;
+		text-align: center;
+		font-size: 3em;
+		margin-bottom: 50px;
+	}
+	.home-img {
+		width: 100%;
+		float: none;
+	}
+	.home {
+		text-align: center;
+	}
+	.logo {
+		font-size: 1em;
+	}
+
+
+}
+
