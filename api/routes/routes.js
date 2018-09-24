@@ -1,12 +1,13 @@
-let mock = require('./mockdata.js');
-let mockData = mock.mockData;
+const mock = require('./mockdata.js');
+
+const [mockData] = mock.mockData;
 
 const appRouter = (app) => {
   app.get('/', (req, res) => {
     res.send('Hello World');
   });
 
- 
+
   // Get all the orders
 
   app.get('/api/v1/orders', (req, res) => {
