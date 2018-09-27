@@ -4,7 +4,7 @@ CREATE TABLE users
     email VARCHAR(100) not null,
     firstname VARCHAR(50) not null,
     lastname VARCHAR(50) not null,
-    password VARCHAR(200) not null,
+    password VARCHAR(200) not null
 );
 CREATE TABLE orders
 (
@@ -20,11 +20,11 @@ CREATE TABLE menu
     id SERIAL PRIMARY KEY,
     food VARCHAR(100) not null,
     price INT not null,
-    quantifier VARCHAR(20) not null,
+    quantifier VARCHAR(20) not null
 );
 CREATE TABLE admin
 (
     id SERIAL PRIMARY KEY,
     email VARCHAR(50) not null,
-    password VARCHAR(200) not null,
+    password VARCHAR(200) not null
 );
