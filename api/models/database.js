@@ -52,9 +52,7 @@ class Database {
 
   testselect() {
     const holder = this.client.query("SELECT id FROM users WHERE email='jessam@joyson.com'")
-      .then((res) => {
-        return res.rows;
-      });
+      .then(res => res.rows);
     return holder;
   }
 
@@ -65,12 +63,8 @@ class Database {
       const values = Object.values(this.where);
       queryString = `${queryString} WHERE ${keys} = '${values}'`;
       const holder = this.client.query(queryString)
-        .then((res) => {
-          return res.rows;
-        })
-        .catch((e) => {
-          return e.stack;
-        });
+        .then(res => res.rows)
+        .catch(e => e.stack);
       return holder;
     }
     const query = {
@@ -78,12 +72,8 @@ class Database {
       text: queryString,
     };
     const holder = this.client.query(query)
-      .then((res) => {
-        return res.rows;
-      })
-      .catch((e) => {
-        return e.stack;
-      });
+      .then(res => res.rows)
+      .catch(e => e.stack);
     return holder;
   }
 
