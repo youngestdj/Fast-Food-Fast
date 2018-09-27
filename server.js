@@ -12,6 +12,7 @@ require('./api/routes/routes.js')(app);
 require('./api/routes/order_routes.js')(app);
 require('./api/routes/signup_routes.js')(app);
 require('./api/routes/login_routes.js')(app);
+require('./api/routes/menu_routes.js')(app);
 
 
 const server = app.listen(process.env.PORT || 3001, () => {
