@@ -7,6 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const routes = require('./api/routes/routes.js')(app);
+const signupRoutes = require('./api/routes/signup_routes.js')(app);
 
 const server = app.listen(process.env.PORT || 3001, () => {
   console.log('Listening on port %s...', server.address().port);
