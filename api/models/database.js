@@ -7,6 +7,7 @@ class Database {
   constructor() {
     const config = {
       connectionString: process.env.DATABASE_URL,
+      ssl: true,
     };
     this.client = new Client(config);
     this.client.connect();
