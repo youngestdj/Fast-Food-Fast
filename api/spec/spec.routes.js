@@ -18,7 +18,7 @@ describe('Server', () => {
     });
   });
 
-
+  /*
   describe('GET /api/v1/orders/:id', () => {
     const data = {};
     beforeAll((done) => {
@@ -31,7 +31,7 @@ describe('Server', () => {
       expect(data.status).toBe(200);
     });
   });
-
+  */
 
   describe('POST /api/v1/orders', () => {
     const data = {};
@@ -41,9 +41,9 @@ describe('Server', () => {
         url: 'https://jessam.herokuapp.com/api/v1/orders',
         headers: { 'content-type': 'application/json' },
         body: {
-          name: 'Since Morning',
-          date: 'Aug 30',
-          order: {
+          userId: '1',
+          amount: '1500',
+          orderItems: {
             Jollof: '200',
             beans: '100',
             Chicken: '300',
@@ -61,7 +61,7 @@ describe('Server', () => {
     });
   });
 
-
+  /*
   describe('PUT /api/v1/orders/:id', () => {
     const data = {};
     beforeAll((done) => {
@@ -74,8 +74,6 @@ describe('Server', () => {
       expect(data.status).toBe(200);
     });
   });
-
-
   describe('DELETE /api/v1/orders/:id', () => {
     const data = {};
     beforeAll((done) => {
@@ -90,8 +88,7 @@ describe('Server', () => {
       expect(data.status).toBe(200);
     });
   });
-
-
+*/
   describe('GET /api/v1/orders', () => {
     const data = {};
     beforeAll((done) => {
