@@ -42,7 +42,7 @@ const orderRouter = (app) => {
         user_id: userId, order_items: orderItems, status, time, amount,
       };
       db.insert(data, 'orders');
-      response.status(200).send({ status: 'success', message: 'order has been placed' });
+      response.status(201).send({ status: 'success', message: 'order has been placed' });
     } else {
       response.status(400).send({ status: 'error', message: 'Invalid data' });
     }
