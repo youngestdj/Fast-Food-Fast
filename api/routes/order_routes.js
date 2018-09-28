@@ -8,8 +8,16 @@ const [mockData] = mock.mockData;
 
 const orderRouter = (app) => {
   // Get all the orders
-  app.get('/api/v1/orders', (req, res) => {
-    res.send(mockData);
+  app.get('/api/v1/orders', (request, response) => {
+    const query = 'SELECT id, order_items, status, amount, user_id, time FROM orders';
+    db.client.query(query)
+      .then((res) => {
+        if (res.rows) {
+          response.status(200).send(res.rows);
+        } else {
+          response.send({ status: 'success', message: 'No orders yet' });
+        }
+      });
   });
 
   // Get a specific order
