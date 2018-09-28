@@ -1,4 +1,8 @@
 const mock = require('./mockdata.js');
+const database = require('../models/database.js');
+
+const db = new database.Database();
+
 
 const [mockData] = mock.mockData;
 
@@ -26,9 +30,22 @@ const orderRouter = (app) => {
   });
 
   // Place a new order
-  app.post('/api/v1/orders/', (req, res) => {
-    mockData.push(req.body);
-    res.status(201).send(mockData);
+  app.post('/api/v1/orders/', (request, response) => {
+    if (request.body.userId && request.body.orderItems && request.body.amount) {
+      const userId = request.body.userId.trim();
+      const amount = parseInt(request.body.amount, 10);
+      const orderItems = JSON.stringify(request.body.orderItems);
+      const status = 'new';
+      const dateObj = new Date();
+      const time = `${dateObj.getFullYear()} / ${(dateObj.getMonth() + 1)} / ${dateObj.getDate()}`;
+      const data = {
+        user_id: userId, order_items: orderItems, status, time, amount,
+      };
+      db.insert(data, 'orders');
+      response.status(200).send({ status: 'success', message: 'order has been placed' });
+    } else {
+      response.status(400).send({ status: 'error', message: 'Invalid data' });
+    }
   });
 
   // Update an existing order
