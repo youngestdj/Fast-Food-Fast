@@ -1,19 +1,21 @@
 # Fast-Food-Fast
 Fast-Food-Fast​ is a food delivery service app for a restaurant.
-The project has an api that can be consumed externally. There are currently five api end points
+## Getting started
+The instructions below will guide you on how to run a copy of the project locally.
+### Prerequisites
+You need to have `node.js` and `postgreSQL` installed on your machine. Other `npm` packages will be installed with `npm install`
+### Installing
+To install first clone the project locally then navigate to the folder in command prompt and run `npm install` to install all packages and dependencies
 
-GET api/v1/orders ***Get all the orders***
+Import the `migrations.sql` file in `api/models/` in your database manager to create tables.
 
-GET api/v1/orders/:id ***Get a specific order***
+### Running the tests
+To run the tests type `npm run test` in your console.
 
-POST api/v1/orders ***Place an order***
-
-PUT api/v1/orders/:id ***Update a specific order***
-
-DELETE api/v1/orders/:id ***Delete a specific order***
-
-***Backend URL:*** http://jessam.herokuapp.com
-
-***UI:*** https://youngestdj.github.io/Fast-Food-Fast
+#### Deployment
+To deploy this project to a live server upload all files to the server and run `npm install` Don't forget to run the sql file.
+##### Links
+* http://jessam.herokuapp.com - Backend Url
+* https://youngestdj.github.io/Fast-Food-Fast - UI
 
 [![Build Status](https://travis-ci.com/youngestdj/Fast-Food-Fast.svg?branch=api)](https://travis-ci.com/youngestdj/Fast-Food-Fast) [![Coverage Status](https://coveralls.io/repos/github/youngestdj/Fast-Food-Fast/badge.svg?branch=develop)](https://coveralls.io/github/youngestdj/Fast-Food-Fast?branch=develop) <a href="https://codeclimate.com/github/youngestdj/Fast-Food-Fast/maintainability"><img src="https://api.codeclimate.com/v1/badges/6e4f0d3aa4e45e131392/maintainability" /></a> <a href="https://codeclimate.com/github/youngestdj/Fast-Food-Fast/test_coverage"><img src="https://api.codeclimate.com/v1/badges/6e4f0d3aa4e45e131392/test_coverage" /></a>
