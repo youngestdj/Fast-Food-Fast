@@ -18,7 +18,7 @@ const menuRouter = (app) => {
               food, price, quantifier,
             };
             db.insert(data, 'menu');
-            response.send({ status: 'success', message: 'Menu added' });
+            response.status(200).send({ status: 'success', message: 'Menu added' });
           } else {
             response.send({ status: 'error', message: 'Food already exists in database' });
           }
@@ -34,7 +34,7 @@ const menuRouter = (app) => {
     db.client.query(query)
       .then((res) => {
         if (res.rows) {
-          response.send(res.rows[0]);
+          response.status(200).send(res.rows);
         } else {
           response.send({ status: 'success', message: 'No menu yet' });
         }
