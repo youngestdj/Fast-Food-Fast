@@ -34,7 +34,7 @@ const menuRouter = (app) => {
     db.client.query(query)
       .then((res) => {
         if (res.rows) {
-          response.send(res.rows);
+          response.send(res.rows[0]);
         } else {
           response.send({ status: 'success', message: 'No menu yet' });
         }
