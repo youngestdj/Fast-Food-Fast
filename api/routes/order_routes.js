@@ -35,20 +35,17 @@ const orderRouter = (app) => {
   });
 
   // Get a specific order
-  app.get('/api/v1/orders/:id', (req, res) => {
-    let [id] = req.params.id;
-
-    if (Number.isNaN(id)) {
-      res.status(400).send({ status: 'error', message: 'Invalid URL' });
-    } else {
-      id -= 1;
-
-      if (!mockData[id]) {
-        res.status(404).send({ status: 'error', message: 'Order not found. Where did you get this URL from btw?' });
-      }
-
-      res.send(mockData[id]);
-    }
+  app.get('/api/v1/orders/:id', (request, response) => {
+    const id = request.params.id;
+    const query = `SELECT id, order_items, status, amount, user_id, time FROM orders WHERE id=${id}`;
+    db.client.query(query)
+      .then((res) => {
+        if (res.rows) {
+          response.status(200).json(res.rows);
+        } else {
+          response.status(404).json({ status: 'error', message: 'Order not found' });
+        }
+      })
   });
 
   // Place a new order
