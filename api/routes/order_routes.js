@@ -74,7 +74,7 @@ const orderRouter = (app) => {
       request.body.order_items = JSON.stringify(request.body.order_items);
     }
     db.update(id, request.body);
-    response.json(request.body);
+    response.json({ status: 'success', message: 'Order has been updated' });
   });
 
   // Delete a specific order
