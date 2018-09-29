@@ -13,9 +13,23 @@ const orderRouter = (app) => {
     db.client.query(query)
       .then((res) => {
         if (res.rows) {
-          response.status(200).send(res.rows);
+          response.status(200).json(res.rows);
         } else {
-          response.send({ status: 'success', message: 'No orders yet' });
+          response.status(200).json({ status: 'success', message: 'No orders yet' });
+        }
+      });
+  });
+
+  // Get all the orders for a particular user
+  app.get('/api/v1/users/:userid/orders', (request, response) => {
+    const userId = request.params.userid;
+    const query = `SELECT id, order_items, status, amount, user_id, time FROM orders WHERE user_id=${userId}`;
+    db.client.query(query)
+      .then((res) => {
+        if (res.rows) {
+          response.status(200).json(res.rows);
+        } else {
+          response.status(200).json({ status: 'success', message: 'No orders from this user' });
         }
       });
   });
@@ -50,9 +64,9 @@ const orderRouter = (app) => {
         user_id: userId, order_items: orderItems, status, time, amount,
       };
       db.insert(data, 'orders');
-      response.status(201).send({ status: 'success', message: 'order has been placed' });
+      response.status(201).json({ status: 'success', message: 'order has been placed' });
     } else {
-      response.status(400).send({ status: 'error', message: 'Invalid data' });
+      response.status(400).json({ status: 'error', message: 'Invalid data' });
     }
   });
 
