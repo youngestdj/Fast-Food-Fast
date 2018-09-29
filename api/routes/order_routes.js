@@ -36,7 +36,7 @@ const orderRouter = (app) => {
 
   // Get a specific order
   app.get('/api/v1/orders/:id', (request, response) => {
-    const id = request.params.id;
+    const { id } = request.params.id;
     const query = `SELECT id, order_items, status, amount, user_id, time FROM orders WHERE id=${id}`;
     db.client.query(query)
       .then((res) => {
@@ -45,7 +45,7 @@ const orderRouter = (app) => {
         } else {
           response.status(404).json({ status: 'error', message: 'Order not found' });
         }
-      })
+      });
   });
 
   // Place a new order
@@ -69,13 +69,12 @@ const orderRouter = (app) => {
 
   // Update an existing order
   app.put('/api/v1/orders/:id', (request, response) => {
-   const id = request.params.id;
-   if(request.body.status) {
-    request.body.order_items = JSON.stringify(request.body.order_items);
-   }
-   db.update(id, request.body);
-   request.body.order_items = JSON.parse(request.body.order_items);
-   response.json(request.body);
+    const { id } = request.params.id;
+    if (request.body.status) {
+      request.body.order_items = JSON.stringify(request.body.order_items);
+    }
+    db.update(id, request.body);
+    response.json(request.body);
   });
 
   // Delete a specific order
