@@ -68,21 +68,14 @@ const orderRouter = (app) => {
   });
 
   // Update an existing order
-  app.put('/api/v1/orders/:id', (req, res) => {
-    let [id] = req.params.id;
-
-    if (Number.isNaN(id)) {
-      res.status(400).send({ status: 'error', message: 'Invalid URL' });
-    } else {
-      id -= 1;
-
-      if (!mockData[id]) {
-        res.status(404).send({ status: 'error', message: 'Order not found. Where did you get this URL from btw?' });
-      }
-
-      mockData[id].order = req.body;
-      res.send(mockData);
-    }
+  app.put('/api/v1/orders/:id', (request, response) => {
+   const id = request.params.id;
+   if(request.body.status) {
+    request.body.order_items = JSON.stringify(request.body.order_items);
+   }
+   db.update(id, request.body);
+   request.body.order_items = JSON.parse(request.body.order_items);
+   response.json(request.body);
   });
 
   // Delete a specific order
