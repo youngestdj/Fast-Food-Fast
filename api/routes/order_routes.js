@@ -1,10 +1,7 @@
-const mock = require('./mockdata.js');
 const database = require('../models/database.js');
 
 const db = new database.Database();
 
-
-const [mockData] = mock.mockData;
 
 const orderRouter = (app) => {
   // Get all the orders
@@ -69,7 +66,7 @@ const orderRouter = (app) => {
 
   // Update an existing order
   app.put('/api/v1/orders/:id', (request, response) => {
-    const { id } = request.params.id;
+    const { id } = request.params;
     if (request.body.status) {
       request.body.order_items = JSON.stringify(request.body.order_items);
     }
@@ -78,22 +75,19 @@ const orderRouter = (app) => {
   });
 
   // Delete a specific order
-  app.delete('/api/v1/orders/:id', (req, res) => {
-    let [id] = req.params.id;
-
-    if (Number.isNaN(id)) {
-      res.status(400).send({ status: 'error', message: 'Invalid URL' });
-    } else {
-      id -= 1;
-
-      if (!mockData[id]) {
-        res.status(404).send({ status: 'error', message: 'Order not found. Where did you get this URL from btw?' });
-      }
-
-      mockData.splice(id, 1);
-      res.status(201).send(mockData);
-    }
+  app.delete('/api/v1/orders/:id', (request, response) => {
+    const { id } = request.params;
+    const query = `SELECT id from ORDERS WHERE id=${id}`;
+    db.client.query(query)
+      .then((res) => {
+        if (res.rows[0]) {
+          db.delete(id, 'orders');
+          response.status(200).json({ status: 'success', message: 'Order has been deleted' });
+        } else {
+          response.status(404).json({ status: 'error', message: 'Order not found' });
+        }
+      });
+    db.delete(id, 'orders');
   });
 };
-
 module.exports = orderRouter;
