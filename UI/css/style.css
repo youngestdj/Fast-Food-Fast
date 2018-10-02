@@ -222,6 +222,9 @@ a.logout {
 	.home {
 		text-align: center;
 	}
+	.logo {
+		font-size: 1em;
+	}
 
 
 }

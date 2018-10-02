@@ -1,5 +1,5 @@
 {
-  "spec_dir": "././lib/spec",
+  "spec_dir": "././api/spec",
   "spec_files": [
   	"spec.routes.js",
     "**/*[sS]pec.js"
