@@ -109,6 +109,7 @@ class Database {
     this.client.query(text)
       .then();
   }
+
   delete(id, table) {
     const query = `DELETE from ${table} where id='${id}'`;
     this.client.query(query);
