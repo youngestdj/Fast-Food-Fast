@@ -8,17 +8,16 @@ const verifyPassword = (email, password, callback) => {
   db.client.query(query)
     .then((result) => {
       if (result.rows[0]) {
-      	const checkPassword = passwordHash.verify(password, result.rows[0].password);
-      	if (checkPassword) {
-      		callback(true);
-      	}
-      	else {
-      		callback(false)
-      	}
+        const checkPassword = passwordHash.verify(password, result.rows[0].password);
+        if (checkPassword) {
+          callback(true);
+        } else {
+          callback(false);
+        }
       }
     });
 };
 
 module.exports = {
-	verifyPassword,
-}
+  verifyPassword,
+};
