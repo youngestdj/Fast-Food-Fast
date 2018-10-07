@@ -20,25 +20,6 @@ describe('Server', () => {
     });
   });
 
-  describe('GET /api/v1/orders/:id', () => {
-    const data = {};
-    beforeAll((done) => {
-      const options = {
-        method: 'GET',
-        url: 'https://jessam.herokuapp.com/api/v1/orders/1',
-        headers: { 'content-type': 'application/json', 'x-access-token': token },
-        json: true,
-      };
-      Request(options, (error, response) => {
-        data.status = response.statusCode;
-        done();
-      });
-    });
-    it('Should return 200 for successful request', () => {
-      expect(data.status).toBe(200);
-    });
-  });
-
   describe('POST /api/v1/orders', () => {
     const data = {};
     beforeAll((done) => {
@@ -65,46 +46,7 @@ describe('Server', () => {
     it('Should return 201 for content created', () => {
       expect(data.status).toBe(201);
     });
-  });
-
-
-  describe('PUT /api/v1/orders/:id', () => {
-    const data = {};
-    beforeAll((done) => {
-      const options = {
-        method: 'PUT',
-        url: 'https://jessam.herokuapp.com/api/v1/orders/15',
-        headers: { 'content-type': 'application/json', 'x-access-token': token },
-        json: true,
-      };
-      Request(options, (error, response) => {
-        data.status = response.statusCode;
-        done();
-      });
-    });
-    it('Should return 201 for content created', () => {
-      expect(data.status).toBe(200);
-    });
-  });
-
-  describe('DELETE /api/v1/orders/:id', () => {
-    const data = {};
-    beforeAll((done) => {
-      const options = {
-        method: 'DELETE',
-        url: 'https://jessam.herokuapp.com/api/v1/orders/15',
-        headers: { 'content-type': 'application/json', 'x-access-token': token },
-        json: true,
-      };
-      Request(options, (error, response) => {
-        data.status = response.statusCode;
-        done();
-      });
-    });
-    it('Should return 200 for successful request', () => {
-      expect(data.status).toBe(200);
-    });
-  });
+  }); 
 
   describe('GET /api/v1/orders', () => {
     const data = {};
@@ -125,3 +67,60 @@ describe('Server', () => {
     });
   });
 });
+
+  describe('GET /api/v1/orders/:id', () => {
+    const data = {};
+    beforeAll((done) => {
+      const options = {
+        method: 'GET',
+        url: 'https://jessam.herokuapp.com/api/v1/orders/1',
+        headers: { 'content-type': 'application/json', 'x-access-token': token },
+        json: true,
+      };
+      Request(options, (error, response) => {
+        data.status = response.statusCode;
+        done();
+      });
+    });
+    it('Should return 200 for successful request', () => {
+      expect(data.status).toBe(200);
+    });
+  });
+
+  describe('PUT /api/v1/orders/:id', () => {
+    const data = {};
+    beforeAll((done) => {
+      const options = {
+        method: 'PUT',
+        url: 'https://jessam.herokuapp.com/api/v1/orders/1',
+        headers: { 'content-type': 'application/json', 'x-access-token': token },
+        json: true,
+      };
+      Request(options, (error, response) => {
+        data.status = response.statusCode;
+        done();
+      });
+    });
+    it('Should return 201 for content created', () => {
+      expect(data.status).toBe(200);
+    });
+  });
+
+  describe('DELETE /api/v1/orders/:id', () => {
+    const data = {};
+    beforeAll((done) => {
+      const options = {
+        method: 'DELETE',
+        url: 'https://jessam.herokuapp.com/api/v1/orders/1',
+        headers: { 'content-type': 'application/json', 'x-access-token': token },
+        json: true,
+      };
+      Request(options, (error, response) => {
+        data.status = response.statusCode;
+        done();
+      });
+    });
+    it('Should return 200 for successful request', () => {
+      expect(data.status).toBe(200);
+    });
+  });
