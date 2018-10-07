@@ -27,7 +27,11 @@ const selectOrder = (orderId, callback) => {
   const query = `SELECT id from orders WHERE id=${orderId}`;
   db.client.query(query)
     .then((result) => {
-      callback(result.rows);
+      if (result) {
+        callback(result.rows[0]);
+      } else {
+        callback(false);
+      }
     });
 };
 const deleteOrder = (orderId) => {
