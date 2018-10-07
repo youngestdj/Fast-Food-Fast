@@ -1,9 +1,8 @@
 const passwordHash = require('password-hash');
+const jwt = require('jsonwebtoken');
 const models = require('../models/signup_models.js');
 const lModels = require('../models/login_models.js');
 const helper = require('../helper.js');
-const jwt = require('jsonwebtoken');
-
 
 
 exports.signUserUp = (request, response) => {
@@ -21,28 +20,28 @@ exports.signUserUp = (request, response) => {
           password, firstname, lastname, email,
         };
         models.signUserUp(data);
-        lModels.getUser(email, (result) => {
-          const token = jwt.sign({ id: result.id, role: result.role }, process.env.SECRET, {
-          expiresIn: 86400
+        lModels.getUser(email, (result1) => {
+          const token = jwt.sign({ id: result1.id, role: result1.role }, process.env.SECRET, {
+            expiresIn: 86400,
           });
-        response.status(201).send({ 
-          auth: true,
-          token: token,
-          status: 'success',
-          message: 'registration successful!'
+          response.status(201).send({
+            auth: true,
+            token,
+            status: 'success',
+            message: 'registration successful!',
+          });
         });
-        })
       } else {
-        response.status(409).json({ 
+        response.status(409).json({
           status: 'error',
-          message: 'User already exists'
+          message: 'User already exists',
         });
       }
     });
   } else {
     response.status(422).json({
       status: 'error',
-      message: 'Invalid data'
+      message: 'Invalid data',
     });
   }
 };
