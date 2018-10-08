@@ -12,15 +12,16 @@ exports.signUserUp = (request, response) => {
       if (!result) {
         if (!helper.isEmail(request.body.email)) {
           response.status(422).json({ status: 'error', message: 'Invalid email' });
-        }
-        const password = passwordHash.generate(request.body.password);
+        } else {
+          const password = passwordHash.generate(request.body.password);
         const firstname = request.body.firstname.trim();
         const lastname = request.body.lastname.trim();
         const data = {
           password, firstname, lastname, email,
         };
-        models.signUserUp(data);
-        lModels.getUser(email, (result1) => {
+        models.signUserUp(data, (result2) => {
+          if (result2) {
+            lModels.getUser(email, (result1) => {
           const token = jwt.sign({ id: result1.id, role: result1.role }, process.env.SECRET, {
             expiresIn: 86400,
           });
@@ -31,6 +32,10 @@ exports.signUserUp = (request, response) => {
             message: 'registration successful!',
           });
         });
+          }
+        });  
+        }
+        
       } else {
         response.status(409).json({
           status: 'error',

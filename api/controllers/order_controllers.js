@@ -101,7 +101,7 @@ exports.postOrder = (request, response) => {
       models.postOrder(data);
       response.status(201).json({ status: 'success', message: 'order has been placed' });
     } else {
-      response.status(404).json({ status: 'error', message: 'unauthorized access' });
+      response.status(401).json({ status: 'error', message: 'unauthorized access' });
     }
   } else {
     response.status(400).json({ status: 'error', message: 'Invalid data' });
