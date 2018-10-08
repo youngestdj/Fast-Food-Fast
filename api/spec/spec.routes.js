@@ -92,7 +92,7 @@ describe('Server', () => {
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
-        .get('/api/v1/orders/2')
+        .get('/api/v1/orders/222')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
@@ -153,7 +153,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
-        .put('/api/v1/orders/2')
+        .put('/api/v1/orders/222')
         .send(data)
         .set('content-type', 'application/json')
         .set('x-access-token', token)
@@ -190,7 +190,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
   describe('POST /api/v1/auth/login', () => {
       const correctLogin = {
-        email: 'steve@joyson.com',
+        email: 'jessam@joyson.com',
         password: 'abcdef',
       };
       const incorrectEmail = {
@@ -198,7 +198,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         password: 'abcdef',
       };
       const incorrectPassword = {
-        email: 'steve@joyson.com',
+        email: 'jessam@joyson.com',
         password: 'abcddef',
       };
     const app1 = app.listen();
@@ -242,7 +242,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         quantifier: 'wrap'
       };
       const existingMenu = {
-        food: 'fufu',
+        food: 'Fufu',
         price: '50',
         quantifier: 'wrap'
       };
