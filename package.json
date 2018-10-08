@@ -10,7 +10,8 @@
     "build": "babel api -d lib",
     "lint": "eslint ./api --fix",
     "coverage": "istanbul cover node_modules/jasmine/bin/jasmine.js lib/spec/spec.*.js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "setup-test-db": "node api/models/setup_test_db.js"
   },
   "engines": {
     "node": "8.11.3",
