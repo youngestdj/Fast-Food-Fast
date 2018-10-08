@@ -33,4 +33,7 @@ const query4 = `INSERT into users(email, firstname, lastname, password, role) VA
 db.client.query(query1).then((res) => console.log(res));
 db.client.query(query2).then((res) => console.log(res));
 db.client.query(query3).then((res) => console.log(res));
-db.client.query(query4).then((res) => console.log(res));
+db.client.query(query4).then((res) => {
+    console.log(res);
+    db.endClient();
+});
