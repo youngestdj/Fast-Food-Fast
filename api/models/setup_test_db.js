@@ -14,7 +14,7 @@ const query1 = `CREATE TABLE users(
 const query2 = `CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
     order_items VARCHAR(10000) not null,
-    status VARCHAR(100) not null,
+    status VARCHAR(100) default 'new',
     amount INT not null,
     time VARCHAR(100) not null,
     user_id INT REFERENCES users(id)
@@ -30,10 +30,28 @@ const query4 = `INSERT into users(email, firstname, lastname, password, role) VA
 'joyson',
 'abcdef',
 'admin')`;
+const query5 = `INSERT into users(email, firstname, lastname, password) VALUES('jessam2@joyson.com',
+'jessam',
+'joyson',
+'abcdef')`;
+const query6 = `INSERT into orders(user_id, order_items, amount, time) VALUES(
+'1',
+'test',
+'1000',
+'now')`;
+const query7 = `INSERT into menu(food, price, quantifier) VALUES(
+'Fufu',
+'50',
+'wrap')`;
+
 db.client.query(query1).then((res) => console.log(res));
 db.client.query(query2).then((res) => console.log(res));
 db.client.query(query3).then((res) => console.log(res));
-db.client.query(query4).then((res) => {
+db.client.query(query4).then((res) => console.log(res));
+db.client.query(query5).then((res) => console.log(res));
+db.client.query(query6).then((res) => console.log(res));
+db.client.query(query7).then((res) => {
     console.log(res);
     db.endClient();
 });
+

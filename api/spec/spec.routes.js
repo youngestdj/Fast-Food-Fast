@@ -23,7 +23,7 @@ describe('Server', () => {
 
   describe('POST /api/v1/orders', () => {
       const data = {
-        userId: '34',
+        userId: '1',
         amount: '1500',
         orderItems: {
           Puff: '200',
@@ -83,7 +83,7 @@ describe('Server', () => {
 
     it('Should return 200 for successful request', async () => {
       await request(app1)
-        .get('/api/v1/orders/12')
+        .get('/api/v1/orders/1')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
@@ -92,7 +92,7 @@ describe('Server', () => {
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
-        .get('/api/v1/orders/1')
+        .get('/api/v1/orders/2')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
@@ -109,7 +109,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
     it('Should return 200 for successful request', async () => {
       await request(app1)
-        .get('/api/v1/users/34/orders')
+        .get('/api/v1/users/1/orders')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
@@ -118,7 +118,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
     it('Should return 200 for order not found', async () => {
       await request(app1)
-        .get('/api/v1/users/35/orders')
+        .get('/api/v1/users/2/orders')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
@@ -143,7 +143,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
     it('Should return 201 for content created', async () => {
       await request(app1)
-        .put('/api/v1/orders/12')
+        .put('/api/v1/orders/1')
         .send(data)
         .set('content-type', 'application/json')
         .set('x-access-token', token)
@@ -153,7 +153,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
-        .put('/api/v1/orders/1')
+        .put('/api/v1/orders/2')
         .send(data)
         .set('content-type', 'application/json')
         .set('x-access-token', token)
@@ -252,7 +252,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         app1.close();
     });
 
-/*    it('Should return 201 for content created', async () => {
+    it('Should return 201 for content created', async () => {
       await request(app1)
         .post('/api/v1/menu')
         .send(newMenu)
@@ -261,7 +261,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         .expect((res) => {
           expect(res.statusCode).toBe(201);
         })
-    });*/
+    });
     it('Should return 422 for food already exists', async () => {
       await request(app1)
         .post('/api/v1/menu')
@@ -326,7 +326,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         app1.close();
     });
 
-/*    it('Should return 201 for content created', async () => {
+    it('Should return 201 for content created', async () => {
       await request(app1)
         .post('/api/v1/auth/signup')
         .send(correctData)
@@ -335,7 +335,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
           expect(res.statusCode).toBe(201);
         })
     });
-    */
+    
     it('Should return 409 for user already exists', async () => {
       await request(app1)
         .post('/api/v1/auth/signup')
