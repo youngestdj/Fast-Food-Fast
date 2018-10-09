@@ -46,13 +46,14 @@ const query7 = `INSERT into menu(food, price, quantifier) VALUES(
 'Fufu',
 '50',
 'wrap')`;
-const query8 = `SELECT * FROM orders`;
 db.client.query(query1).then((res) => console.log(res));
 db.client.query(query2).then((res) => console.log(res));
 db.client.query(query3).then((res) => console.log(res));
 db.client.query(query4).then((res) => console.log(res));
 db.client.query(query5).then((res) => console.log(res));
 db.client.query(query6).then((res) => console.log(res));
-db.client.query(query8).then((res) => console.log(res.rows));
-db.client.query(query7).then((res) => console.log(res));
+db.client.query(query7).then((res) => {
+    console.log(res);
+    db.endClient();
+})
 
