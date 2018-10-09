@@ -172,7 +172,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
     it('Should return 200 for successful delete', async () => {
       await request(app1)
-        .delete('/api/v1/orders/1')
+        .delete('/api/v1/orders/2')
         .set('x-access-token', token)
         .expect((res) => {
           expect(res.statusCode).toBe(200);
