@@ -22,7 +22,7 @@ describe('Server', () => {
     });
   });
 
-  describe('POST /api/v1/orders', () => {
+/*  describe('POST /api/v1/orders', () => {
       const data = {
         userId: '1',
         amount: '1500',
@@ -187,7 +187,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         })
     });
   });
-*/
+
 
   describe('POST /api/v1/auth/login', () => {
       const correctLogin = {
@@ -365,4 +365,5 @@ describe('GET /api/v1/users/:userid/orders', () => {
         });
     });
     });
+    */
 });
