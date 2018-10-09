@@ -23,7 +23,7 @@ exports.signUserUp = (request, response) => {
           if (result2) {
             lModels.getUser(email, (result1) => {
           const token = jwt.sign({ id: result1.id, role: result1.role }, process.env.SECRET, {
-            expiresIn: 86400,
+            expiresIn: 86400000000,
           });
           response.status(201).send({
             auth: true,

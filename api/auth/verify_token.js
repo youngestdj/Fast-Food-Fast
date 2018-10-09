@@ -5,7 +5,7 @@ exports.verifyToken = (request, response, next) => {
   if (!token) {
     return response.status(401).json({ auth: false, message: 'No token provided.' });
   }
-  jwt.verify(token, process.env.TRAVIS_FFF_TOKEN, (err, decoded) => {
+  jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) {
       return response.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
     }

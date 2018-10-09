@@ -163,7 +163,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         });
     });
     });
-/*
+
   describe('DELETE /api/v1/orders/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
@@ -172,7 +172,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
     it('Should return 200 for successful delete', async () => {
       await request(app1)
-        .delete('/api/v1/orders/26')
+        .delete('/api/v1/orders/1')
         .set('x-access-token', token)
         .expect((res) => {
           expect(res.statusCode).toBe(200);
@@ -180,7 +180,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
-        .delete('/api/v1/orders/1')
+        .delete('/api/v1/orders/111')
         .set('x-access-token', token)
         .expect((res) => {
           expect(res.statusCode).toBe(404);
@@ -188,7 +188,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
   });
 
-*/
+
   describe('POST /api/v1/auth/login', () => {
       const correctLogin = {
         email: 'jessam@joyson.com',
