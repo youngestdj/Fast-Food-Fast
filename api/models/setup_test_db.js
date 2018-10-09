@@ -1,6 +1,9 @@
+const passwordHash = require('password-hash');
 const database = require('./database.js');
 
 const db = new database.Database();
+const password = passwordHash.generate('abcdef');
+
 
 
 const query1 = `CREATE TABLE users(
@@ -28,12 +31,12 @@ const query3 = `CREATE TABLE menu(
 const query4 = `INSERT into users(email, firstname, lastname, password, role) VALUES('jessam@joyson.com',
 'jessam',
 'joyson',
-'abcdef',
+'${password}',
 'admin')`;
 const query5 = `INSERT into users(email, firstname, lastname, password) VALUES('jessam2@joyson.com',
 'jessam',
 'joyson',
-'abcdef')`;
+'${password}')`;
 const query6 = `INSERT into orders(user_id, order_items, amount, time) VALUES(
 '1',
 'test',
