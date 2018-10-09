@@ -22,7 +22,7 @@ describe('Server', () => {
     });
   });
 
-/*  describe('POST /api/v1/orders', () => {
+  describe('POST /api/v1/orders', () => {
       const data = {
         userId: '1',
         amount: '1500',
@@ -58,7 +58,7 @@ describe('Server', () => {
         });
     });
     });
-
+/*
   describe('GET /api/v1/orders', () => {
     const app1 = app.listen();
     afterAll(() => {
