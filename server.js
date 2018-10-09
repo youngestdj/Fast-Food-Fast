@@ -14,7 +14,11 @@ require('./api/routes/signup_routes.js')(app);
 require('./api/routes/login_routes.js')(app);
 require('./api/routes/menu_routes.js')(app);
 
-
-const server = app.listen(process.env.PORT || 3001, () => {
-  console.log('Listening on port %s...', server.address().port);
-});
+if (require.main === module) {
+	app.listen(process.env.PORT || 3001);
+}
+else {
+	module.exports = {
+		app,
+	};
+}

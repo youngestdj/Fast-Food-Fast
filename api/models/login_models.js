@@ -12,7 +12,7 @@ const getUser = (email, callback) => {
       } else {
         callback(false);
       }
-    })
+    });
 };
 
 const verifyPassword = (email, password, callback) => {
@@ -29,7 +29,6 @@ const verifyPassword = (email, password, callback) => {
       }
     });
 };
-
 
 
 module.exports = {

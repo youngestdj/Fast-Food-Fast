@@ -88,7 +88,7 @@ exports.deleteOrder = (request, response) => {
  */
 exports.postOrder = (request, response) => {
   if (request.body.userId && request.body.orderItems && request.body.amount) {
-    if (parseInt(request.body.userId, 10) === parseInt(request.userId)){
+    if (parseInt(request.body.userId, 10) === parseInt(request.userId, 10)) {
       const userId = request.body.userId.trim();
       const amount = parseInt(request.body.amount, 10);
       const orderItems = JSON.stringify(request.body.orderItems);
@@ -101,7 +101,7 @@ exports.postOrder = (request, response) => {
       models.postOrder(data);
       response.status(201).json({ status: 'success', message: 'order has been placed' });
     } else {
-      response.status(404).json({ status: 'error', message: 'unauthorized access' });
+      response.status(401).json({ status: 'error', message: 'unauthorized access' });
     }
   } else {
     response.status(400).json({ status: 'error', message: 'Invalid data' });
@@ -116,7 +116,7 @@ exports.postOrder = (request, response) => {
  */
 exports.updateOrder = (request, response) => {
   if (request.role === 'admin') {
-   const { id } = request.params;
+    const { id } = request.params;
     if (request.body.orderItems) {
       request.body.order_items = JSON.stringify(request.body.orderItems);
       delete request.body.orderItems;

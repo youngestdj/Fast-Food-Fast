@@ -1,9 +1,8 @@
 const passwordHash = require('password-hash');
+const jwt = require('jsonwebtoken');
 const models = require('../models/signup_models.js');
 const lModels = require('../models/login_models.js');
 const helper = require('../helper.js');
-const jwt = require('jsonwebtoken');
-
 
 
 exports.signUserUp = (request, response) => {
@@ -13,36 +12,41 @@ exports.signUserUp = (request, response) => {
       if (!result) {
         if (!helper.isEmail(request.body.email)) {
           response.status(422).json({ status: 'error', message: 'Invalid email' });
-        }
-        const password = passwordHash.generate(request.body.password);
+        } else {
+          const password = passwordHash.generate(request.body.password);
         const firstname = request.body.firstname.trim();
         const lastname = request.body.lastname.trim();
         const data = {
           password, firstname, lastname, email,
         };
-        models.signUserUp(data);
-        lModels.getUser(email, (result) => {
-          const token = jwt.sign({ id: result.id, role: result.role }, process.env.SECRET, {
-          expiresIn: 86400
+        models.signUserUp(data, (result2) => {
+          if (result2) {
+            lModels.getUser(email, (result1) => {
+          const token = jwt.sign({ id: result1.id, role: result1.role }, process.env.SECRET, {
+            expiresIn: 86400000000,
           });
-        response.status(201).send({ 
-          auth: true,
-          token: token,
-          status: 'success',
-          message: 'registration successful!'
+          response.status(201).send({
+            auth: true,
+            token,
+            status: 'success',
+            message: 'registration successful!',
+          });
         });
-        })
+          }
+        });  
+        }
+        
       } else {
-        response.status(409).json({ 
+        response.status(409).json({
           status: 'error',
-          message: 'User already exists'
+          message: 'User already exists',
         });
       }
     });
   } else {
     response.status(422).json({
       status: 'error',
-      message: 'Invalid data'
+      message: 'Invalid data',
     });
   }
 };
