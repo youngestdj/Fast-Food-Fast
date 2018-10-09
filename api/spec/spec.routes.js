@@ -190,7 +190,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
 
   describe('POST /api/v1/auth/login', () => {
       const correctLogin = {
-        email: 'jessam2@joyson.com',
+        email: 'jessam@joyson.com',
         password: 'abcdef',
       };
       const incorrectEmail = {
