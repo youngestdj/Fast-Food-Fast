@@ -21,7 +21,7 @@ describe('Server', () => {
         });
     });
   });
-/*
+
   describe('POST /api/v1/orders', () => {
       const data = {
         userId: '1',
@@ -58,7 +58,7 @@ describe('Server', () => {
         });
     });
     });
-*/
+
   describe('GET /api/v1/orders', () => {
     const app1 = app.listen();
     afterAll(() => {
@@ -75,7 +75,7 @@ describe('Server', () => {
         });
     });
   });
-/*
+
   describe('GET /api/v1/orders/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
@@ -188,7 +188,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
   });
 
-
+*/
   describe('POST /api/v1/auth/login', () => {
       const correctLogin = {
         email: 'jessam@joyson.com',
@@ -365,5 +365,4 @@ describe('GET /api/v1/users/:userid/orders', () => {
         });
     });
     });
-    */
 });
