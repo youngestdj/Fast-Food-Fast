@@ -54,8 +54,5 @@ db.client.query(query4).then((res) => console.log(res));
 db.client.query(query5).then((res) => console.log(res));
 db.client.query(query6).then((res) => console.log(res));
 db.client.query(query8).then((res) => console.log(res.rows));
-db.client.query(query7).then((res) => {
-    console.log(res);
-    db.endClient();
-});
+db.client.query(query7).then((res) => console.log(res));
 
