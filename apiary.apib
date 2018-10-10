@@ -1,0 +1,365 @@
+FORMAT: 1A
+HOST: https://jessam.herokuapp.com/
+
+# Fast-Food-Fast
+
+Fast-Food-Fast​ is a food delivery service app for a restaurant.
+
+## Registration [/api/v1/auth/signup]
+
+### Sign up [POST]
+
+You can create a new user using this action. This resource takes a JSON 
+payload as part of the request. Response returns a token which can then be used 
+on other routes. `Email`, `firstname`, `lastname` and `password` are required.
+
+This action returns a 201 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+
+        
++ Request (application/json)
+
+        {
+            "email": "user@domain.com",
+            "firstname": "Userfirstname",
+            "lastname": "Userlastname",
+            "password": "userPAssword"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "auth": true,
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJpYXQiOjE1MzkxMTgyNDUsImV4cCI6ODc5MzkxMTgyNDV9.OpsCw-x4vAfBC8-RDRKGs2HXKtY0mUrq6bksb-J_aD4",
+            "status": "success",
+            "message": "registration successful!"
+        }
+
+## Authentication [/api/v1/auth/login]
+
+### Log in [POST]
+
+User can log in by sending a json of `email` and `password` to this resource. Response
+returns a token which can be used on other routes.
+This action returns a 200 status code along with a JSON body. The token should be sent
+in the header of every request
+
++ Headers
+
+        Content-Type: application/json
+
+
++ Request (application/json)
+
+        {
+            "email": "user@domain.com",
+            "password": "userPAssword"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "message": "Login successful!",
+            "auth": true,
+            "token": "eyJpZCI6Mywicm9sZSI6InVzZXIiLCJpYXQiOjE1MzkxNDY2NjAsImV4cCI6ODc5MzkxNDY2NjB9.AoyWe1iAq_EBgRwI_51i4Nrmeh6HTpz_c2meI8_zSRo"
+        }
+
+## Menu [/api/v1/menu]
+
+### Add menu item [POST]
+
+Admin can add a new menu item to the database by sending a json of `food`, `price` and 
+`quantifier` to this resource. `food` is the name of the food, `price` is its price
+and `quantifier` is how we quantify it. For example we say "two **pieces** of meat pies"
+**piece** here is the quantifier. Another example is "A plate of jollof rice". **plate**
+is the quantifier. Quantifier must always be singular. Only admin can add menu item.
+Admin should have the `role` column in the database equal to `admin`
+
+This action returns a 200 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+ 
++ Request (application/json)
+
+        {
+            "food": "Burger",
+            "price": "500",
+            "quantifier": "piece"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": "success",
+            "message": "Menu added"
+        }
+        
+### Get menu items [GET]
+
+Users can get the list of availble menu by sending a request to this resource.
+The token must be sent along with the headers.
+
+This action returns a 200 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+ 
+
++ Response 200 (application/json)
+
+        {
+            "status": "success",
+            "message": [
+                {
+                    "id": 1,
+                    "food": "Amala",
+                    "price": 100,
+                    "quantifier": "wrap"
+                },
+                {
+                    "id": 2,
+                    "food": "Fufu",
+                    "price": 50,
+                    "quantifier": "wrap"
+                },
+                {
+                    "id": 3,
+                    "food": "Rice",
+                    "price": 250,
+                    "quantifier": "plate"
+                },
+                {
+                    "id": 4,
+                    "food": "Chicken",
+                    "price": 600,
+                    "quantifier": "piece"
+                },
+                {
+                    "id": 5,
+                    "food": "Chin chin",
+                    "price": 300,
+                    "quantifier": "packs"
+                }
+            ]
+        }
+
+## Orders [/api/v1/orders]
+
+### Place order [POST]
+
+You can place a new order using this action. This resource takes a json payload as part of
+the request.
+
+This action returns a 201 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+ 
++ Request (application/json)
+
+            {
+                "userId": "1",
+                "amount": "1500",
+                "orderItems": {
+                  "Puff": "200",
+                  "Rice": "100",
+                  "Chicken": "300",
+                },
+            }
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "status": "success",
+                "message": "order has been placed"
+            }
+
+### Get all orders [GET]
+
+Admin can get the list of availble orders by sending a request to this resource.
+The token must be sent along with the headers. Only admin can access this route.
+Make sure the `role` column is set to `admin` in the `users` table in the database.
+
+This action returns a 200 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+ 
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": "success",
+                "message": [
+                    {
+                        "id": 2,
+                        "order_items": "{\"Puff\":\"200\",\"Rice\":\"100\",\"Chicken\":\"300\"}",
+                        "status": "new",
+                        "amount": 1500,
+                        "user_id": 1,
+                        "time": "2018 / 10 / 9"
+                    },
+                    {
+                        "id": 3,
+                        "order_items": "{\"Burger\":\"1\",\"Chicken\":\"2\",\"Ice cream\":\"5\"}",
+                        "status": "new",
+                        "amount": 1000,
+                        "user_id": 1,
+                        "time": "2018 / 10 / 10"
+                    },
+                    {
+                        "id": 4,
+                        "order_items": "{\"Burger\":\"1\",\"Chicken\":\"2\",\"Ice cream\":\"5\"}",
+                        "status": "new",
+                        "amount": 1000,
+                        "user_id": 1,
+                        "time": "2018 / 10 / 10"
+                    }
+                ]
+            }
+            
+            
+            
+## Order [/api/v1/orders/{id}]
++ Parameters
+    + id (number) - id of the order in the form of an integer
+
+### View an order [GET]
+
+Admin can view an order by sending a request to this resource. The order id must be 
+sent as a parameter.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": "success",
+                "message": {
+                    "id": 2,
+                    "order_items": "{\"Puff\":\"200\",\"Rice\":\"100\",\"Chicken\":\"300\"}",
+                    "status": "new",
+                    "amount": 1500,
+                    "user_id": 1,
+                    "time": "2018 / 10 / 9"
+                }
+            }
+
+### Update an order [PUT]
+
+Admin can update an order by sending a request to this resource. The order id must be 
+sent as a parameter. `status` can either be `New`, `Processing`, `Cancelled` or `Complete`.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
++ Request (application/json)
+
+            {
+                "amount": "700",
+                "status": "Processing",
+                "orderItems": {
+                    "Buns": "200",
+                    "Egg": "100",
+                    "Chicken": "300"
+                }
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": "success",
+                "message": "Order has been Updated"
+            }
+            
+### Delete an order [DELETE]
+
+Admin can delete an order by sending a request to this resource. 
+The order id must be sent as a parameter. The token gotten during login
+must be sent along with the headers. Only admin can access this route.
+Make sure the `role` column is set to `admin` in the `users` table in the database.
+
+This action returns a 200 status code along with a JSON body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": "success",
+                "message": "Order has been deleted"
+            }
+
+
+## User orders [/api/v1/users/{userid}/orders]
+
+### Get user order history [GET]
+User can get their order history by sending a request to this resource. The `userid`
+must be supplied as a parameter.
+This action returns a 200 status code along with a json body.
+
++ Headers
+
+        Content-Type: application/json
+        x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": "success",
+                "message": [
+                    {
+                        "id": 3,
+                        "order_items": "{\"Burger\":\"1\",\"Chicken\":\"2\",\"Ice cream\":\"5\"}",
+                        "status": "new",
+                        "amount": 1000,
+                        "user_id": 1,
+                        "time": "2018 / 10 / 10"
+                    },
+                    {
+                        "id": 4,
+                        "order_items": "{\"Burger\":\"1\",\"Chicken\":\"2\",\"Ice cream\":\"5\"}",
+                        "status": "new",
+                        "amount": 1000,
+                        "user_id": 1,
+                        "time": "2018 / 10 / 10"
+                    }
+                ]
+            }
