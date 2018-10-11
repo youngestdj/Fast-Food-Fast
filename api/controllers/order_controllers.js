@@ -9,7 +9,7 @@ exports.getAllOrders = (request, response) => {
   if (request.role === 'admin') {
     models.getAllOrders((result) => {
       if (result) {
-        response.status(200).json(result);
+        response.status(200).json({ status: 'success', message: result });
       } else {
         response.status(200).json({ status: 'success', message: 'No orders yet' });
       }
