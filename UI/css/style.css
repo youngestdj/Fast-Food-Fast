@@ -47,8 +47,6 @@ img {
 }
 .logo {
 	color: #FF0099;
-	font-weight: bolder;
-	font-size: 1.5em;
 	display: inline-block;
 }
 .links {
@@ -60,6 +58,7 @@ img {
 	margin-left: 20px;
 	color: #555;
 	font-weight: bold;
+	font-size: 0.9em;
 	text-decoration: none;
 }
 .links a:hover {
@@ -146,20 +145,22 @@ a.logout {
 }
 .home-title {
 	display: inline-block;
-	width: 50%;
+	width: 40%;
 	color: #fff;
 }
 .home-title h1 {
-	font-size: 7em;
-	margin: 0 0 100px;
+	font-size: 3em;
+	margin: 30% 0 5%;
+	letter-spacing: 0.1em;
 }
 .home-img {
 	float: right;
+	padding-top: 100px;
 	width: 48%;
 	display: inline-block;
 }
 .home {
-	padding:50px 0 100px;
+	padding:4% 0;
 }
 .purple {
 	background: #ff0084;
@@ -167,6 +168,31 @@ a.logout {
 	background: linear-gradient(to right, #33001b, #ff0084);
 }
 
+
+@media(max-width:1024px){
+	.container {
+		width: 90%;
+	}
+	.order-group {
+	width: 90%;
+	}
+	.links a {
+	font-size: 0.9em;
+	margin-left: 10px;
+	}
+	.welcome {
+		display: none;
+	}
+	.home-title h1 {
+		font-size: 2.9em;
+		margin: 50px 0 0;
+	}
+	.home-img {
+		padding-top: 50px;
+	}
+
+
+}
 
 @media(max-width:768px){
 	.container {
@@ -183,7 +209,7 @@ a.logout {
 		display: none;
 	}
 	.home-title h1 {
-		font-size: 5em;
+		font-size: 2.5em;
 	}
 
 }
@@ -216,8 +242,10 @@ a.logout {
 		margin-bottom: 50px;
 	}
 	.home-img {
-		width: 100%;
-		float: none;
+		display: none;
+	}
+	.home-title {
+		width: 80%;
 	}
 	.home {
 		text-align: center;
