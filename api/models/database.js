@@ -12,67 +12,6 @@ class Database {
     this.client.connect();
   }
 
-  selectP(...args) {
-    this.selectParams = args;
-    return this;
-  }
-
-  from(table) {
-    this.from = table;
-    return this;
-  }
-
-  where(arg) {
-    this.where = arg;
-    return this;
-  }
-
-  sort(by, arg) {
-    this.arg = arg;
-    this.by = by;
-    return this;
-  }
-
-  createTable() {
-    const query = 'CREATE TABLE orders(id SERIAL PRIMARY KEY, order_items VARCHAR(10000) not null, status VARCHAR(100) not null, amount INT not null, user_id INT REFERENCES users(id))';
-    this.client.query(query)
-      .then((res) => {
-        this.endClient();
-        return res.rows;
-      })
-      .catch((e) => {
-        this.endClient();
-        return e.stack;
-      });
-  }
-
-  testselect() {
-    const holder = this.client.query("SELECT id FROM users WHERE email='jessam@joyson.com'")
-      .then(res => res.rows);
-    return holder;
-  }
-
-  result() {
-    let queryString = `SELECT ${this.selectParams.join()} FROM ${this.from}`;
-    if (this.where !== null) {
-      const keys = Object.keys(this.where).join();
-      const values = Object.values(this.where);
-      queryString = `${queryString} WHERE ${keys} = '${values}'`;
-      const holder = this.client.query(queryString)
-        .then(res => res.rows)
-        .catch(e => e.stack);
-      return holder;
-    }
-    const query = {
-      name: 'executeQuery',
-      text: queryString,
-    };
-    const holder = this.client.query(query)
-      .then(res => res.rows)
-      .catch(e => e.stack);
-    return holder;
-  }
-
   // end connection to database
   endClient() {
     this.client.end();

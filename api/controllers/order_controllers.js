@@ -46,17 +46,13 @@ exports.getUserOrders = (request, response) => {
  * @return {json}
  */
 exports.getSpecificOrder = (request, response) => {
-  if (request.role === 'admin') {
-    models.getSpecificOrder(request.params.id, (result) => {
-      if (result) {
-        response.status(200).json({ status: 'success', message: result });
-      } else {
-        response.status(404).json({ status: 'error', message: 'Order does not exist' });
-      }
-    });
-  } else {
-    response.status(401).json({ status: 'error', message: 'You are not authorized to perform this action' });
-  }
+  models.getSpecificOrder(request.params.id, (result) => {
+    if (result) {
+      response.status(200).json({ status: 'success', message: result });
+    } else {
+      response.status(404).json({ status: 'error', message: 'Order does not exist' });
+    }
+  });
 };
 
 /**
@@ -66,18 +62,14 @@ exports.getSpecificOrder = (request, response) => {
  * @return {json}
  */
 exports.deleteOrder = (request, response) => {
-  if (request.role === 'admin') {
-    models.selectOrder(request.params.id, (result) => {
-      if (result) {
-        models.deleteOrder(request.params.id);
-        response.status(200).json({ status: 'success', message: 'Order has been deleted' });
-      } else {
-        response.status(404).json({ status: 'error', message: 'Order not found' });
-      }
-    });
-  } else {
-    response.status(401).json({ status: 'error', message: 'You are not authorized to perform this action' });
-  }
+  models.selectOrder(request.params.id, (result) => {
+    if (result) {
+      models.deleteOrder(request.params.id);
+      response.status(200).json({ status: 'success', message: 'Order has been deleted' });
+    } else {
+      response.status(404).json({ status: 'error', message: 'Order not found' });
+    }
+  });
 };
 
 /**
@@ -115,21 +107,17 @@ exports.postOrder = (request, response) => {
  * @return {json}
  */
 exports.updateOrder = (request, response) => {
-  if (request.role === 'admin') {
-    const { id } = request.params;
-    if (request.body.orderItems) {
-      request.body.order_items = JSON.stringify(request.body.orderItems);
-      delete request.body.orderItems;
-    }
-    models.selectOrder(id, (result) => {
-      if (result) {
-        models.updateOrder(id, request.body);
-        response.status(201).json({ status: 'success', message: 'Order has been Updated' });
-      } else {
-        response.status(404).json({ status: 'error', message: 'Order not found' });
-      }
-    });
-  } else {
-    response.status(401).json({ status: 'error', message: 'You are not authorized to perform this action' });
+  const { id } = request.params;
+  if (request.body.orderItems) {
+    request.body.order_items = JSON.stringify(request.body.orderItems);
+    delete request.body.orderItems;
   }
+  models.selectOrder(id, (result) => {
+    if (result) {
+      models.updateOrder(id, request.body);
+      response.status(201).json({ status: 'success', message: 'Order has been Updated' });
+    } else {
+      response.status(404).json({ status: 'error', message: 'Order not found' });
+    }
+  });
 };
