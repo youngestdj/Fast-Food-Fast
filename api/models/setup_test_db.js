@@ -45,11 +45,14 @@ const query7 = `INSERT into menu(food, price, quantifier) VALUES(
 'Fufu',
 '50',
 'wrap')`;
-db.client.query(query1).then();
-db.client.query(query2).then();
-db.client.query(query3).then();
-db.client.query(query4).then();
-db.client.query(query5).then();
-db.client.query(query6).then();
-db.client.query(query6).then();
-db.client.query(query7).then(db.endClient());
+db.client.query(query1).then(res => console.log(res));
+db.client.query(query2).then(res => console.log(res));
+db.client.query(query3).then(res => console.log(res));
+db.client.query(query4).then(res => console.log(res));
+db.client.query(query5).then(res => console.log(res));
+db.client.query(query6).then(res => console.log(res));
+db.client.query(query6).then(res => console.log(res));
+db.client.query(query7).then((res) => {
+  console.log(res);
+  db.endClient();
+});
