@@ -19,20 +19,20 @@ const selectId = (email, callback) => {
 
 const signUserUp = (data, callback) => {
   const fields = Object.keys(data).join();
-    const values = Object.values(data);
-    const number = Object.keys(data).length;
-    let pmQuery = '';
-    for (let i = 1; i <= number; i += 1) {
-      if (pmQuery === '') pmQuery = `$${i}`;
-      else {
-        pmQuery = `${pmQuery}, $${i}`;
-      }
+  const values = Object.values(data);
+  const number = Object.keys(data).length;
+  let query = '';
+  for (let j = 1; j <= number; j += 1) {
+    if (query === '') query = `$${j}`;
+    else {
+      query = `${query}, $${j}`;
     }
-    const text = `INSERT INTO users(${fields}) VALUES(${pmQuery})`;
-    db.client.query(text, values)
-      .then((result) => {
-        callback(true);
-      });
+  }
+  const text = `INSERT INTO users(${fields}) VALUES(${query})`;
+  db.client.query(text, values)
+    .then((result) => {
+      callback(result);
+    });
 };
 module.exports = {
   selectEmail,

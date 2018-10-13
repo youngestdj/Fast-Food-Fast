@@ -1,7 +1,7 @@
 const request = require('supertest');
 const server = require('../../server.js');
 
-const app = server.app;
+const { app } = server;
 
 const token = process.env.TRAVIS_FFF_TOKEN;
 
@@ -9,7 +9,7 @@ describe('Server', () => {
   describe('GET /', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Default route should return status 200', async () => {
@@ -23,18 +23,18 @@ describe('Server', () => {
   });
 
   describe('POST /api/v1/orders', () => {
-      const data = {
-        userId: '1',
-        amount: '1500',
-        orderItems: {
-          Puff: '200',
-          Rice: '100',
-          Chicken: '300',
-          },
-        };
+    const data = {
+      userId: '1',
+      amount: '1500',
+      orderItems: {
+        Puff: '200',
+        Rice: '100',
+        Chicken: '300',
+      },
+    };
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 201 for content created', async () => {
@@ -57,12 +57,12 @@ describe('Server', () => {
           expect(res.statusCode).toBe(400);
         });
     });
-    });
+  });
 
   describe('GET /api/v1/orders', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful request', async () => {
@@ -79,7 +79,7 @@ describe('Server', () => {
   describe('GET /api/v1/orders/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful request', async () => {
@@ -102,10 +102,10 @@ describe('Server', () => {
     });
   });
 
-describe('GET /api/v1/users/:userid/orders', () => {
+  describe('GET /api/v1/users/:userid/orders', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful request', async () => {
@@ -128,18 +128,18 @@ describe('GET /api/v1/users/:userid/orders', () => {
     });
   });
 
- describe('PUT /api/v1/orders/:id', () => {
-      const data = {
-        amount: '700',
-        orderItems: {
-          Buns: '200',
-          Egg: '100',
-          Chicken: '300',
-          },
-        };
+  describe('PUT /api/v1/orders/:id', () => {
+    const data = {
+      amount: '700',
+      orderItems: {
+        Buns: '200',
+        Egg: '100',
+        Chicken: '300',
+      },
+    };
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 201 for content created', async () => {
@@ -162,12 +162,12 @@ describe('GET /api/v1/users/:userid/orders', () => {
           expect(res.statusCode).toBe(404);
         });
     });
-    });
+  });
 
   describe('DELETE /api/v1/orders/:id', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful delete', async () => {
@@ -176,7 +176,7 @@ describe('GET /api/v1/users/:userid/orders', () => {
         .set('x-access-token', token)
         .expect((res) => {
           expect(res.statusCode).toBe(200);
-        })
+        });
     });
     it('Should return 404 for order not found', async () => {
       await request(app1)
@@ -184,27 +184,27 @@ describe('GET /api/v1/users/:userid/orders', () => {
         .set('x-access-token', token)
         .expect((res) => {
           expect(res.statusCode).toBe(404);
-        })
+        });
     });
   });
 
 
   describe('POST /api/v1/auth/login', () => {
-      const correctLogin = {
-        email: 'jessam@joyson.com',
-        password: 'abcdef',
-      };
-      const incorrectEmail = {
-        email: 'steveww@joyson.com',
-        password: 'abcdef',
-      };
-      const incorrectPassword = {
-        email: 'jessam@joyson.com',
-        password: 'abcddef',
-      };
+    const correctLogin = {
+      email: 'jessam@joyson.com',
+      password: 'abcdef',
+    };
+    const incorrectEmail = {
+      email: 'steveww@joyson.com',
+      password: 'abcdef',
+    };
+    const incorrectPassword = {
+      email: 'jessam@joyson.com',
+      password: 'abcddef',
+    };
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful login', async () => {
@@ -234,23 +234,23 @@ describe('GET /api/v1/users/:userid/orders', () => {
           expect(res.statusCode).toBe(422);
         });
     });
-    });
+  });
 
   describe('POST /api/v1/menu', () => {
-      const newMenu = {
-        food: 'newfood2',
-        price: '50',
-        quantifier: 'wrap',
-      };
-      const existingMenu = {
-        food: 'Fufu',
-        price: '50',
-        quantifier: 'wrap',
-      };
+    const newMenu = {
+      food: 'newfood2',
+      price: '50',
+      quantifier: 'wrap',
+    };
+    const existingMenu = {
+      food: 'Fufu',
+      price: '50',
+      quantifier: 'wrap',
+    };
 
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 201 for content created', async () => {
@@ -283,12 +283,12 @@ describe('GET /api/v1/users/:userid/orders', () => {
           expect(res.statusCode).toBe(422);
         });
     });
-    });
+  });
 
   describe('GET /api/v1/menu', () => {
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 200 for successful request', async () => {
@@ -303,28 +303,28 @@ describe('GET /api/v1/users/:userid/orders', () => {
   });
 
   describe('POST /api/v1/auth/signup', () => {
-      const correctData = {
-        email: 'test9@1ocalhost.com',
-        firstname: 'Test',
-        lastname: 'localhost',
-        password: 'abcdef',
-      };
-      const existingData = {
-        email: 'jessam@joyson.com',
-        firstname: 'Test',
-        lastname: 'localhost',
-        password: 'abcdef',
-      };
-      const invalidEmail = {
-        email: 'nwrjgnrjw',
-        firstname: 'Test',
-        lastname: 'localhost',
-        password: 'abcdef',
-      };
+    const correctData = {
+      email: 'test9@1ocalhost.com',
+      firstname: 'Test',
+      lastname: 'localhost',
+      password: 'abcdef',
+    };
+    const existingData = {
+      email: 'jessam@joyson.com',
+      firstname: 'Test',
+      lastname: 'localhost',
+      password: 'abcdef',
+    };
+    const invalidEmail = {
+      email: 'nwrjgnrjw',
+      firstname: 'Test',
+      lastname: 'localhost',
+      password: 'abcdef',
+    };
 
     const app1 = app.listen();
     afterAll(() => {
-        app1.close();
+      app1.close();
     });
 
     it('Should return 201 for content created', async () => {
@@ -364,5 +364,5 @@ describe('GET /api/v1/users/:userid/orders', () => {
           expect(res.statusCode).toBe(422);
         });
     });
-    });
+  });
 });

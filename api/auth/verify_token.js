@@ -14,3 +14,11 @@ exports.verifyToken = (request, response, next) => {
     next();
   });
 };
+
+exports.verifyAdmin = (request, response, next) => {
+  const { role } = request;
+  if (role !== 'admin') {
+    return response.status(500).json({ auth: false, message: 'Only admin can access this resource' });
+  }
+  next();
+};
