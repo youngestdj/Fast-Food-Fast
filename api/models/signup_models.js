@@ -30,7 +30,9 @@ const signUserUp = (data, callback) => {
   }
   const text = `INSERT INTO users(${fields}) VALUES(${query})`;
   db.client.query(text, values)
-    .then(callback(true));
+    .then((result) => {
+      callback(result);
+    });
 };
 module.exports = {
   selectEmail,
