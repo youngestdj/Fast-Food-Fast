@@ -77,7 +77,7 @@ const postData = async (details) => {
   const error = document.getElementById('error');
   const success = document.getElementById('success');	
 
-  const URL = 'https://jessam.herokuapp.com/v1/auth/signup';
+  const URL = 'https://jessam.herokuapp.com/api/v1/auth/signup';
   let data = JSON.stringify(details);
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
