@@ -167,6 +167,17 @@ a.logout {
 	background: -webkit-linear-gradient(to right, #33001b, #ff0084);
 	background: linear-gradient(to right, #33001b, #ff0084);
 }
+#error, #success {
+	background-color: #fee;
+	padding: 10px;
+	border: #faa solid 1px;
+	visibility: hidden;
+	color: #555;
+}
+#success {
+	background-color: #efe;
+	border: #afa solid 1px;
+}
 
 
 @media(max-width:1024px){
