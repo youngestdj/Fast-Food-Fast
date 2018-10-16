@@ -1,19 +1,98 @@
-const getMenu = async () => {
-	const url = 'http://jessam.herokuapp.com/api/v1/menu';
-	const headers = new Headers();
+const validateForm = () => {
+	const email = document.forms.login.email.value;
+	const password = document.forms.login.password.value;
+	if (email !== "") {
+		if (password !== "") {
+			error.style.visibility = 'hidden';
+			success.style.visibility = 'visible';
+			success.innerHTML = 'Loading....';
+			const data = { email, password };
+			return data;
+		} else {
+			error.style.visibility = 'visible';
+			error.innerHTML = 'Password cannot be empty';
+			return false;
+		}
+	} else {
+		error.style.visibility = 'visible';
+		error.innerHTML = 'Email cannot be empty';
+		return false;
+	}
+}
+
+const clearFormData = () => {
+	const email = document.forms.login.email.value = '';
+	const password = document.forms.login.password.value = '';
+}
+
+const setCookie = (name, value, days) => {
+	const date = new Date();
+	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	const expires = `expires=${date.toUTCString()}`;
+	document.cookie = `${name}=${value}; ${expires}; path=/`;
+}
+
+const getCookie = (cookieName) => {
+	const name = cookieName + "=";
+	const decodedCookie = decodeURIComponent(document.cookie);
+	const cookieArr = decodedCookie.split(';');
+	for(let i = 0; i < cookieArr.length; i++) {
+		let j = cookieArr[i];
+		while (j.charAt(0) === ' ') {
+			j = cookieArr.substring(1);
+		}
+		if (j.indexOf(name) === 0) {
+			console.log(j.substring(name.length, j.length));
+			return j.substring(name.length, j.length);
+		}
+	}
+	return "";
+}
+const checkCookie = (cookieName) => {
+	if(getCookie(cookieName) !== '') {
+		return true;
+	} else return false;
+}
+
+if(checkCookie('fffToken')) window.location.replace("order_food.html");
+
+const postLogin = async (details) => {
+	const error = document.getElementById('error');
+	const success = document.getElementById('success');	
+
+	const URL = 'https://jessam.herokuapp.com/api/v1/auth/login';
+  	let data = JSON.stringify(details);
+
+  	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTM5MTE0NTMzLCJleHAiOjg3OTM5MTE0NTMzfQ.yxltqK_niLpQgTCgeQLgWb9NHCB1DuiTZhE29mGd6j4');
 	try {
-		const fetchResult = fetch(
-			new Request(url, {
-				method: 'GET',
-				headers: headers
-			}));
-		const response = await fetchResult;
-		const jsonResponse = await response.json();
-		console.log(jsonResponse);
+      const fetchResult = fetch(
+      new Request(URL, { method: 'POST', cache: 'reload', body: data, headers: headers })
+    );
+    
+    const response = await fetchResult;
+    const jsonData = await response.json();
+    console.log(jsonData);
+    
+    if(jsonData.status === 'success') {
+    	clearFormData();
+    	setCookie('fffToken', jsonData.token, 30);
+    	success.style.visibility = 'visible';
+		success.innerHTML = jsonData.message;
+		window.location.replace("order_food.html");
+    } else {
+    	success.style.visibility = 'hidden';
+    	error.style.visibility = 'visible';
+		error.innerHTML = jsonData.message;
+    }
 	} catch(e) {
 		throw Error(e);
 	}
 }
-getMenu();
+
+document.getElementById("submit").addEventListener("click", (event) => {
+	event.preventDefault();
+	if(validateForm()) {
+		postLogin(validateForm());
+	}
+})
