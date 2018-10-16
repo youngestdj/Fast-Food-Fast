@@ -61,8 +61,8 @@ const getCookie = (cookieName) => {
 			j = cookieArr.substring(1);
 		}
 		if (j.indexOf(name) === 0) {
-			console.log(c.substring(name.length, j.length));
-			return c.substring(name.length, j.length);
+			console.log(j.substring(name.length, j.length));
+			return j.substring(name.length, j.length);
 		}
 	}
 	return "";

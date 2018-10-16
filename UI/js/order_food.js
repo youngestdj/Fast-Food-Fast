@@ -8,7 +8,7 @@ const getCookie = (cookieName) => {
 			j = cookieArr.substring(1);
 		}
 		if (j.indexOf(name) === 0) {
-			return c.substring(name.length, j.length);
+			return j.substring(name.length, j.length);
 		}
 	}
 	return "";
