@@ -69,9 +69,11 @@ const getCookie = (cookieName) => {
 }
 const checkCookie = (cookieName) => {
 	if(getCookie(cookieName) !== '') {
-		alert(getCookie(cookieName));
-	} else alert('No cookies');
+		return true;
+	} else return false;
 }
+
+if(checkCookie('fffToken')) window.location.replace("order_food.html");
 
 const postData = async (details) => {
   const error = document.getElementById('error');
@@ -93,8 +95,7 @@ const postData = async (details) => {
     	setCookie('fffToken', jsonData.token, 30);
     	success.style.visibility = 'visible';
 		success.innerHTML = jsonData.message;
-		checkCookie('fffToken');
-//		window.location.replace("order_food.html");
+		window.location.replace("order_food.html");
     } else {
     	success.style.visibility = 'hidden';
     	error.style.visibility = 'visible';
