@@ -1,38 +1,50 @@
+const showSuccess = (message) => {
+	const success = document.getElementById('success');
+	success.style.visibility = 'visible';
+	success.innerHTML = message;
+}
+
+const hideMessages = () => {
+	const success = document.getElementById('success');
+	const error = document.getElementById('error');
+	error.style.visibility = 'hidden';
+	success.style.visibility = 'hidden';	
+}
+
+const showError = (message) => {
+	const error = document.getElementById('error');
+	error.style.visibility = 'visible';
+	error.innerHTML = message;
+}
+
 const validateForm = () => {
 	const email = document.forms.signup.email.value;
 	const firstname = document.forms.signup.firstname.value;
 	const lastname = document.forms.signup.lastname.value;
 	const password = document.forms.signup.password.value;
-	const error = document.getElementById('error');
-	const success = document.getElementById('success');	
 
 	if (email !== "") {
 		if (firstname !== "") {
 			if (lastname !== "") {
 				if (password !== "") {
-					error.style.visibility = 'hidden';
-					success.style.visibility = 'visible';
-					success.innerHTML = 'Loading....';
+					hideMessages();
+					showSuccess("Loading.....");
 					const data = { email, firstname, lastname, password };
 					return data;
 				} else {
-					error.style.visibility = 'visible';
-					error.innerHTML = 'Password cannot be empty';
+					showError("Password cannot be empty");
 					return false;
 				}
 			}  else {
-					error.style.visibility = 'visible';
-					error.innerHTML = 'Lastname cannot be empty';
+					showError('Lastname cannot be empty');
 					return false;
 				}
 		}  else {
-					error.style.visibility = 'visible';
-					error.innerHTML = 'Firstname cannot be empty';
+					showError('Firstname cannot be empty');
 					return false
 				}
 	}  else {
-					error.style.visibility = 'visible';
-					error.innerHTML = 'Email cannot be empty';
+					showError('Email cannot be empty');
 					return false;
 				}
 }
@@ -60,7 +72,6 @@ const getCookie = (cookieName) => {
 			j = cookieArr.substring(1);
 		}
 		if (j.indexOf(name) === 0) {
-			console.log(j.substring(name.length, j.length));
 			return j.substring(name.length, j.length);
 		}
 	}
@@ -88,17 +99,15 @@ const postData = async (details) => {
     );
     const response = await fetchResult;
     const jsonData = await response.json();
-    console.log(jsonData);
+
     if(jsonData.status === 'success') {
     	clearFormData();
     	setCookie('fffToken', jsonData.token, 30);
-    	success.style.visibility = 'visible';
-		success.innerHTML = jsonData.message;
+    	showSuccess(jsonData.message);
 		window.location.replace("order_food.html");
     } else {
-    	success.style.visibility = 'hidden';
-    	error.style.visibility = 'visible';
-		error.innerHTML = jsonData.message;
+    	hideMessages();
+    	showError(jsonData.message);
     }
   } catch(e){
     throw Error(e);

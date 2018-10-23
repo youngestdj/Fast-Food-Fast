@@ -44,7 +44,6 @@ const getMenu = async () => {
     const response = await fetchResult;
     const jsonData = await response.json();
    	orderGroup.innerHTML = "";
-    console.log(jsonData);
 
     const foods = jsonData.message;
     tObj = jsonData.message;
@@ -147,7 +146,6 @@ const postOrder = async (order) => {
 	    
 	    const response = await fetchResult;
 	    const jsonData = await response.json();
-	    console.log(jsonData);
 	    
 	    if(jsonData.status === 'success') {
 	    	showSuccess(jsonData.message);
