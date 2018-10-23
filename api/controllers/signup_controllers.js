@@ -10,7 +10,7 @@ exports.signUserUp = (request, response) => {
     models.selectEmail(email, (result) => {
       if (!result) {
         if (!helper.isEmail(request.body.email)) {
-          response.status(422).json({ status: 'error', message: 'Invalid email' });
+          response.status(422).json({ status: "error", message: "Invalid email" });
         } else {
           const password = passwordHash.generate(request.body.password);
           const firstname = request.body.firstname.trim();
