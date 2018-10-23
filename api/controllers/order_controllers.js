@@ -79,9 +79,9 @@ exports.deleteOrder = (request, response) => {
  * @return {json}
  */
 exports.postOrder = (request, response) => {
-  if (request.body.userId && request.body.orderItems && request.body.amount) {
-    if (parseInt(request.body.userId, 10) === parseInt(request.userId, 10)) {
-      const userId = request.body.userId.trim();
+  if (request.body.orderItems && request.body.amount) {
+    if (parseInt(request.userId, 10)) {
+      const userId = request.userId;
       const amount = parseInt(request.body.amount, 10);
       const orderItems = JSON.stringify(request.body.orderItems);
       const status = 'new';
