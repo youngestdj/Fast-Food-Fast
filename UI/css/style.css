@@ -99,7 +99,7 @@ img {
 }
 .order-group {
 	width: 50%;
-	margin-bottom: 0;
+	margin: 0 auto;
 }
 .food-item {
 	background-color: #f6f6f6;
@@ -173,12 +173,17 @@ a.logout {
 	border: #faa solid 1px;
 	visibility: hidden;
 	color: #555;
+	position: -webkit-sticky;
+    position: sticky;
+    top:0px;
+}
+.error {
+	background-color: #fcc;
 }
 #success {
 	background-color: #efe;
 	border: #afa solid 1px;
 }
-
 
 @media(max-width:1024px){
 	.container {

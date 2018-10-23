@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
  	<title>FastFoodFast - Order Food</title>
- 	<script src="js/cookies.js"></script>
  	<link rel="stylesheet" href="css/style.css">
+ 	<script src="js/cookies.js"></script>
 
  </head>
  
@@ -28,56 +28,12 @@
  	<section>
  		<div class="container">
  			<div class="order-group">
- 				<h1>Order Food</h1>
- 				<div class="food-item" id="amala">
- 					<input type="checkbox" name="amala">
- 					<div class="food-name">Amala</div>
- 					<span class="amount">&#8358;100</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
-				<div class="food-item" id="poundedYam">
- 					<input type="checkbox" name="poundedYam">
- 					<div class="food-name">Pounded Yam</div>
- 					<span class="amount">&#8358;150</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
-				<div class="food-item" id="jollof">
- 					<input type="checkbox" name="jollof">
- 					<div class="food-name">Jollof Rice</div>
- 					<span class="amount">&#8358;300</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
-				<div class="food-item" id="platain">
- 					<input type="checkbox" name="platain">
- 					<div class="food-name">Platain</div>
- 					<span class="amount">&#8358;50</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
-				<div class="food-item" id="friedrice">
- 					<input type="checkbox" name="friedrice">
- 					<div class="food-name">Fried rice</div>
- 					<span class="amount">&#8358;300</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
-				<div class="food-item" id="turkey">
- 					<input type="checkbox" name="turkey">
- 					<div class="food-name">Turkey</div>
- 					<span class="amount">&#8358;250</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
- 				<div class="food-item" id="chicken">
- 					<input type="checkbox" name="chicken">
- 					<div class="food-name">Chicken</div>
- 					<span class="amount">&#8358;250</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
- 				<div class="food-item" id="fish">
- 					<input type="checkbox" name="fish">
- 					<div class="food-name">Fish</div>
- 					<span class="amount">&#8358;100</span>
- 					<input type="number" placeholder="Quantity">
- 				</div>
- 				<button type="button">Checkout</button>
+ 			<div id="error"></div>
+ 				<div id="success"></div>	<h1>Order Food</h1>
+
+
+				<div id="order-group"></div>
+ 				<button type="button" id="checkout">Checkout</button>
 			</div>
 
 
@@ -85,6 +41,7 @@
 
  		</div>
  	</section>
+ 	<script src="js/order_food.js"></script>
 
  </body>
 
