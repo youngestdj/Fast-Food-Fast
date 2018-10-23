@@ -34,7 +34,7 @@ const getMenu = async () => {
 
   	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('x-access-token', getCookie(fffToken));
+	headers.append('x-access-token', getCookie("fffToken"));
 
 	try {
       const fetchResult = fetch(
@@ -138,7 +138,7 @@ const postOrder = async (order) => {
 
 	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('x-access-token', getCookie(fffToken));
+	headers.append('x-access-token', getCookie("fffToken"));
 
 	try {
 	    const fetchResult = fetch(
