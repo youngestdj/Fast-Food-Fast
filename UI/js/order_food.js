@@ -10,7 +10,6 @@ const user = (callback) => {
 const displayMenu = async () => {
 	let orderGroup = document.getElementById('order-group');
 	orderGroup.innerHTML = "Getting menu...";
-   	orderGroup.innerHTML = "";
 
    	menu.then((foods) => {
    		foods.map((food) => {
