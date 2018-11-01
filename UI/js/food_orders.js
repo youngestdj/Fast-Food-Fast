@@ -110,7 +110,7 @@ const getOrders = async () => {
         let tag = document.createElement("script");
         tag.src = "js/accept_order.js";
         document.getElementsByTagName("body")[0].appendChild(tag);
-    } else showError(jsonData.status);  
+    } else showError(jsonData.message);
 } catch(e) {
 		throw Error(e);
 	}
