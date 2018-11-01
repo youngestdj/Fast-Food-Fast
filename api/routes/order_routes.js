@@ -6,7 +6,7 @@ const orderRouter = (app) => {
   app.get('/api/v1/orders', verifyToken.verifyToken, verifyToken.verifyAdmin, controller.getAllOrders);
 
   // Get all the orders for a particular user
-  app.get('/api/v1/users/:userid/orders', verifyToken.verifyToken, verifyToken.verifyAdmin, controller.getUserOrders);
+  app.get('/api/v1/users/:userid/orders', verifyToken.verifyToken, controller.getUserOrders);
 
   // Get a specific order
   app.get('/api/v1/orders/:id', verifyToken.verifyToken, verifyToken.verifyAdmin, controller.getSpecificOrder);
