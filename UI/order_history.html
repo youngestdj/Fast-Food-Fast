@@ -6,6 +6,8 @@
     
  	<title>FastFoodFast - Order history</title>
  	<link rel="stylesheet" href="css/style.css">
+  	<script src="js/menu.js"></script>
+ 	<script src="js/user.js"></script>
 
  </head>
  
@@ -15,10 +17,9 @@
  		<div class="container">
  			<div class="logo">FastFoodFast</div>
  			<div class="links">
- 				<span class="welcome">Welcome</span>
- 				<span class="username">Firstname Lastname</span>
- 				<a href="logout" class="logout">Logout</a>
- 				<a href="order_food.html">Order food</a>
+ 				<span class="username" id="username"></span>
+  				<a href="order_food.html">Order food</a>
+				<a href="logout.html" class="logout">Logout</a>
 
  			</div>
  		</div>
@@ -26,76 +27,11 @@
 
  	<section>
  		<div class="container">
- 			<div class="order-group">
- 				<h1>Order history (4)</h1>
- 				<fieldset>
- 					<legend>2 days ago</legend>
- 					<div class="food-item" id="amala">
- 						<div class="food-name">Amala</div>
-  						<span class="quantity">2 wraps</span>
-						<span class="amount">&#8358;200</span>
- 					</div>
- 					<div class="food-item" id="turkey">
- 						<div class="food-name">Turkey</div>
- 						<span class="quantity">1 piece</span>
- 						<span class="amount">&#8358;250</span>
- 					</div>
- 					<span class="total">Total:</span> &#8358;450
-  				</fieldset>
- 				
- 				<fieldset>
- 					<legend>3 days ago</legend>
- 					<div class="food-item" id="poundedYam">
- 						<div class="food-name">Pounded Yam</div>
- 						<span class="quantity">3 Wraps</span>
- 						<span class="amount">&#8358;450</span>
- 					</div>
- 					<div class="food-item" id="chicken">
- 						<div class="food-name">Chicken</div>
- 						<span class="quantity">1 piece</span>
- 						<span class="amount">&#8358;250</span>
- 					</div>
- 					<span class="total">Total:</span> &#8358;700
-
- 				</fieldset>
-				
-				<fieldset>
-					<legend>1 week ago</legend>
-				<div class="food-item" id="jollof">
- 					<div class="food-name">Jollof Rice</div>
- 					<span class="quantity">1 Plate</span>
- 					<span class="amount">&#8358;300</span>
- 				</div>
-				<div class="food-item" id="platain">
- 					<div class="food-name">Platain</div>
- 					<span class="quantity">10 pieces</span>
- 					<span class="amount">&#8358;500</span>
- 				</div>
-				<div class="food-item" id="friedrice">
- 					<div class="food-name">Fried rice</div>
- 					<span class="quantity">1 Plate</span>
- 					<span class="amount">&#8358;300</span>
- 				</div>
- 				<span class="total">Total:</span> &#8358;1100
-
- 				</fieldset>
-
-				<fieldset>
-					<legend>1 month ago</legend>
-					<div class="food-item" id="friedrice">
-						<div class="food-name">Fried rice</div>
-						<span class="quantity">1 Plate</span>
-						<span class="amount">&#8358;300</span>
- 				</div>
-					<div class="food-item" id="fish">
-						<div class="food-name">Fish</div>
-						<span class="quantity">1 Piece</span>
-						<span class="amount">&#8358;100</span>
-					</div>
-					<span class="total">Total:</span> &#8358;400
-
- 				</fieldset>
-
+ 			<div class="order-group" id="orderGroup">
+  				<div id="error"></div>
+ 				<div id="success"></div>
+ 				<h1>Order history</h1>
+ 				<h3 id="orderCount"></h3> 				
  				
 			</div>
 
@@ -104,6 +40,11 @@
 
  		</div>
  	</section>
+ 	<section>
+ 		<a href="food_orders.html">Administrator</a>
+ 	</section>
+ 	<script src="js/general.js"></script>
+ 	<script src="js/order_history.js"></script>
 
  </body>
 

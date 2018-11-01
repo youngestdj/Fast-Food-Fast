@@ -1,22 +1,3 @@
-const showSuccess = (message) => {
-	const success = document.getElementById('success');
-	success.style.visibility = 'visible';
-	success.innerHTML = message;
-}
-
-const hideMessages = () => {
-	const success = document.getElementById('success');
-	const error = document.getElementById('error');
-	error.style.visibility = 'hidden';
-	success.style.visibility = 'hidden';	
-}
-
-const showError = (message) => {
-	const error = document.getElementById('error');
-	error.style.visibility = 'visible';
-	error.innerHTML = message;
-}
-
 const validateForm = () => {
 	const email = document.forms.signup.email.value;
 	const firstname = document.forms.signup.firstname.value;
@@ -115,7 +96,7 @@ const postData = async (details) => {
 }
 
 document.getElementById("submit").addEventListener("click", (event) => {
-	event.preventDefault();
+	event.preventDefault ? event.preventDefault() : (event.returnValue = false);
 	if(validateForm()) {
 		postData(validateForm());
 	}

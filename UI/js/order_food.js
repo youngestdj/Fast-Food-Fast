@@ -1,53 +1,19 @@
-const createNode = (element) => {
-    return document.createElement(element);
-}
+const menu = getMenu();
 
-const append = (parent, el) => {
-    return parent.appendChild(el);
-}
+const user = (callback) => {
+    getUserFromToken().then((result) => {
+        callback(result);
+    });
+};
 
-const showSuccess = (message) => {
-	const success = document.getElementById('success');
-	success.style.visibility = 'visible';
-	success.innerHTML = message;
-}
 
-const hideMessages = () => {
-	const success = document.getElementById('success');
-	const error = document.getElementById('error');
-	error.style.visibility = 'hidden';
-	success.style.visibility = 'hidden';	
-}
-
-const showError = (message) => {
-	const error = document.getElementById('error');
-	error.style.visibility = 'visible';
-	error.innerHTML = message;
-}
-
-let tObj = {};
-
-const getMenu = async () => {
-	const URL = 'https://jessam.herokuapp.com/api/v1/menu';
+const displayMenu = async () => {
 	let orderGroup = document.getElementById('order-group');
 	orderGroup.innerHTML = "Getting menu...";
-
-  	const headers = new Headers();
-	headers.append('Content-Type', 'application/json');
-	headers.append('x-access-token', getCookie("fffToken"));
-
-	try {
-      const fetchResult = fetch(
-      new Request(URL, { method: 'GET', headers: headers })
-    );
-    
-    const response = await fetchResult;
-    const jsonData = await response.json();
    	orderGroup.innerHTML = "";
 
-    const foods = jsonData.message;
-    tObj = jsonData.message;
-    foods.map((food) => {
+   	menu.then((foods) => {
+   		foods.map((food) => {
     	let foodItem = food.food;
     	let price = food.price;
     	let foodId = food.id;
@@ -79,43 +45,44 @@ const getMenu = async () => {
     	append(orderGroup, foodItemHtml);
 
     });
-    } catch(e) {
-		throw Error(e);
-	}
+   	});
 }
 
-getMenu();
+displayMenu();
 
-
-const getOrderEl = () => {
+const getOrderEl = (callback) => {
 	const x = document.querySelectorAll('.order-group .food-item input');
 	let totalAmount = 0;
 	let orderItemsObj= {};
 	let orderObj= {};
-	for(let i = 0; i < x.length; i++) {
-		if (x[i].checked) {
-			const quantity = x[i + 1].value;
-			const id = x[i].id - 1;
-			let amount = tObj[id].price;
-			let foodName = tObj[id].food;
-			amount = amount * quantity;
-			totalAmount += amount;
-			orderItemsObj[foodName] = quantity;
-			showSuccess(`Your total order is &#8358;${totalAmount}`);
-		}
-	}
 
-	if(totalAmount > 0) {
-		orderObj['orderItems'] = orderItemsObj;
-		orderObj['amount'] = totalAmount;
-		return orderObj;
-	}
+	menu.then((foods) => {
+		for(let i = 0; i < x.length; i++) {
+			if (x[i].checked) {
+				const quantity = x[i + 1].value;
+				const id = x[i].id - 1;
+				let amount = foods[id].price;
+				let foodName = foods[id].food;
+				amount = amount * quantity;
+				totalAmount += amount;
+				orderItemsObj[foodName] = quantity;
+				showSuccess(`Your total order is &#8358;${totalAmount}`);
+			}
+		}
+		if(totalAmount > 0) {
+			orderObj['orderItems'] = orderItemsObj;
+			orderObj['amount'] = totalAmount;
+			callback(orderObj);
+		}
+	});
 }
 
 const validateOrder = () => {
 	const x = document.querySelectorAll('.order-group .food-item input');
+	let checkedRows = 0;
 	for(let i = 0; i < x.length; i++) {
 		if (x[i].checked) {
+			checkedRows += 1;
 			x[i].parentElement.classList.remove("error");
 			if(x[i + 1].value === '') {
 				x[i].parentElement.classList.add("error");
@@ -124,11 +91,14 @@ const validateOrder = () => {
 			}
 		}
 	}
+	if(checkedRows === 0) {
+		showError("You have to order something!");
+		return false;
+	}
 	return true;
 }
 
 const postOrder = async (order) => {
-
 	const URL = 'https://jessam.herokuapp.com/api/v1/orders';
 	let data = JSON.stringify(order);
 	let orderGroup = document.getElementById('order-group');
@@ -137,7 +107,7 @@ const postOrder = async (order) => {
 
 	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('x-access-token', getCookie("fffToken"));
+	headers.append('x-access-token',  getCookie("fffToken"));
 
 	try {
 	    const fetchResult = fetch(
@@ -149,19 +119,30 @@ const postOrder = async (order) => {
 	    
 	    if(jsonData.status === 'success') {
 	    	showSuccess(jsonData.message);
-	    } else showError(jsonData.message);
+	    	return true;
+	    } else {
+	    	showError(jsonData.message);
+	    	return false;
+	    }
 		} catch(e) {
 			throw Error(e);
 		}
 }
 
 document.getElementById('checkout').addEventListener("click", (e) => {
-		e.preventDefault();
-		hideMessages();
-		if (validateOrder()) {
-			if(postOrder(getOrderEl())) {
-				getMenu();
-			}
-		}
+	e.preventDefault ? e.preventDefault() : (evenet.returnValue = false);
+	hideMessages();
+	if (validateOrder()) {
+		let order = getOrderEl((result) => {
+			if(postOrder(result)) {
+				displayMenu();
+				hideMessages();
+			} else showError("Something went wrong");
+		});	
+	}
+});
+user(result => {
+    const username = document.getElementById('username');
+    username.innerHTML = `${result.firstname} ${result.lastname}`;
+    getOrders(result.id);
 })
-

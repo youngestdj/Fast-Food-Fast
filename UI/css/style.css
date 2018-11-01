@@ -48,11 +48,14 @@ img {
 .logo {
 	color: #FF0099;
 	display: inline-block;
+	font-weight:bold;
+	font-size: 1.2em;
 }
 .links {
 	display: inline-block;
 	padding: 5px 0;
 	float: right;
+	font-size:0.9em;
 }
 .links a {
 	margin-left: 20px;
@@ -98,7 +101,7 @@ img {
 	background: #f50;
 }
 .order-group {
-	width: 50%;
+	width: 55%;
 	margin: 0 auto;
 }
 .food-item {
@@ -124,18 +127,26 @@ img {
 	width: 10%;
 	font-size: 0.9em;
 }
-.food-item input[type=number], .amount {
+.food-item input[type=number], .amount, .quantity {
 	padding: 5px 5px;
 	text-align: center;
 	float: right;
 	width: 20%;
 }
-.decline, .logout {
+.quantity {
+	width: 30%;
+}
+.logout {
 	color: #f00;
 	font-size: 0.8em;
 }
-.decline:hover, .logout:hover {
+.logout:hover {
 	text-decoration: none;
+}
+.decline {
+	width: 28%;
+	color: #fff;
+	background-color: #aaa;
 }
 a.logout {
 	text-decoration: underline;
@@ -184,6 +195,44 @@ a.logout {
 	background-color: #efe;
 	border: #afa solid 1px;
 }
+.bold {
+	font-weight: bold;
+}
+.accept {
+	width: 70%;
+}
+.accept-complete {
+	background: #3a3;
+	color: fff;
+}
+.accept-complete:hover{
+	cursor: not-allowed;
+	background: #3a3;
+}
+.decline-complete:hover, .new-order:hover {
+	cursor: not-allowed;
+	background: #aaa;
+}
+.new-order {
+	background: #aaa;
+}
+.declined-order, .declined-order:hover {
+	background: #f55;
+	cursor: not-allowed;
+}
+
+.accept, .decline, .accept-complete, .decline-complete, .new-order, .declined-order {
+	font-size: 0.8em;
+}
+.admin {
+	text-align: center;
+	margin:20px 0;
+	font-weight: 0.5em;
+}
+.admin a {
+	color: #555;
+}
+
 
 @media(max-width:1024px){
 	.container {
@@ -265,6 +314,15 @@ a.logout {
 	}
 	.home {
 		text-align: center;
+	}
+	.food-name, .quantity {
+		width: 50%;
+		margin: 0;
+		padding: 0;
+	}
+	.accept, .decline {
+		width: 100%;
+		font-size: 0.8em;
 	}
 
 

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
  	<title>FastFoodFast - Food orders</title>
+ 	<script src="js/menu.js"></script>
+ 	<script src="js/user.js"></script>
  	<link rel="stylesheet" href="css/style.css">
 
  </head>
@@ -17,7 +19,7 @@
  			<div class="links">
  				<span class="welcome">Welcome</span>
  				<span class="username">Administrator</span>
- 				<a href="logout" class="logout">Logout</a>
+ 				<a href="logout.html" class="logout">Logout</a>
 
  			</div>
  		</div>
@@ -25,85 +27,15 @@
 
  	<section>
  		<div class="container">
- 			<div class="order-group">
- 				<h1>Pending orders (4)</h1>
- 				<fieldset>
- 					<legend>Ayobami Adekunle</legend>
- 					<div class="food-item" id="amala">
- 						<div class="food-name">Amala</div>
-  						<span class="quantity">2 wraps</span>
-						<span class="amount">&#8358;200</span>
- 					</div>
- 					<div class="food-item" id="turkey">
- 						<div class="food-name">Turkey</div>
- 						<span class="quantity">1 piece</span>
- 						<span class="amount">&#8358;250</span>
- 					</div>
-					<button type="button" id="">Accept order</button>
- 					<a href="" class="decline" id="">Decline Order</a>
-  				</fieldset>
- 				
- 				<fieldset>
- 					<legend>John Wick</legend>
- 					<div class="food-item" id="poundedYam">
- 						<div class="food-name">Pounded Yam</div>
- 						<span class="quantity">3 Wraps</span>
- 						<span class="amount">&#8358;450</span>
- 					</div>
- 					<div class="food-item" id="chicken">
- 						<div class="food-name">Chicken</div>
- 						<span class="quantity">1 piece</span>
- 						<span class="amount">&#8358;250</span>
- 					</div>
- 					<button type="button" id="">Accept order</button>
- 					<a href="" class="decline" id="">Decline Order</a>
- 				</fieldset>
-				
-				<fieldset>
-					<legend>Johnson Adetomiwa</legend>
-				<div class="food-item" id="jollof">
- 					<div class="food-name">Jollof Rice</div>
- 					<span class="quantity">1 Plate</span>
- 					<span class="amount">&#8358;300</span>
- 				</div>
-				<div class="food-item" id="platain">
- 					<div class="food-name">Platain</div>
- 					<span class="quantity">10 pieces</span>
- 					<span class="amount">&#8358;500</span>
- 				</div>
-				<div class="food-item" id="friedrice">
- 					<div class="food-name">Fried rice</div>
- 					<span class="quantity">1 Plate</span>
- 					<span class="amount">&#8358;300</span>
- 				</div>
-					<button type="button" id="">Accept order</button>
- 					<a href="" class="decline" id="">Decline Order</a>
- 				</fieldset>
-
-				<fieldset>
-					<legend>Moraine Sedai</legend>
-					<div class="food-item" id="friedrice">
-						<div class="food-name">Fried rice</div>
-						<span class="quantity">1 Plate</span>
-						<span class="amount">&#8358;300</span>
- 				</div>
-					<div class="food-item" id="fish">
-						<div class="food-name">Fish</div>
-						<span class="quantity">1 Piece</span>
-						<span class="amount">&#8358;100</span>
-					</div>
-					<button type="button" id="">Accept order</button>
- 					<a href="" class="decline" id="">Decline Order</a>
- 				</fieldset>
-
- 				
+ 			<div id="orderGroup" class="order-group">
+ 				<div id="error"></div>
+ 				<div id="success"></div>
+ 				<h1 id="orderCount"></h1> 				
 			</div>
-
-
-
-
  		</div>
  	</section>
+ 	<script src="js/general.js"></script>
+ 	<script src="js/food_orders.js"></script>
 
  </body>
 

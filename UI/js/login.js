@@ -3,19 +3,16 @@ const validateForm = () => {
 	const password = document.forms.login.password.value;
 	if (email !== "") {
 		if (password !== "") {
-			error.style.visibility = 'hidden';
-			success.style.visibility = 'visible';
-			success.innerHTML = 'Loading....';
+			hideMessages();
+			showSuccess('Loading....');
 			const data = { email, password };
 			return data;
 		} else {
-			error.style.visibility = 'visible';
-			error.innerHTML = 'Password cannot be empty';
+			showError('Password cannot be empty');
 			return false;
 		}
 	} else {
-		error.style.visibility = 'visible';
-		error.innerHTML = 'Email cannot be empty';
+		showError('Email cannot be empty');
 		return false;
 	}
 }
@@ -56,9 +53,6 @@ const checkCookie = (cookieName) => {
 if(checkCookie('fffToken')) window.location.replace("order_food.html");
 
 const postLogin = async (details) => {
-	const error = document.getElementById('error');
-	const success = document.getElementById('success');	
-
 	const URL = 'https://jessam.herokuapp.com/api/v1/auth/login';
   	let data = JSON.stringify(details);
 
@@ -71,26 +65,23 @@ const postLogin = async (details) => {
     
     const response = await fetchResult;
     const jsonData = await response.json();
-    console.log(jsonData);
     
     if(jsonData.status === 'success') {
     	clearFormData();
     	setCookie('fffToken', jsonData.token, 30);
-    	success.style.visibility = 'visible';
-		success.innerHTML = jsonData.message;
+    	showSuccess(jsonData.message);
 		window.location.replace("order_food.html");
     } else {
-    	success.style.visibility = 'hidden';
-    	error.style.visibility = 'visible';
-		error.innerHTML = jsonData.message;
-    }
+    	hideMessages();
+    	showError(jsonData.message);
+      }
 	} catch(e) {
 		throw Error(e);
 	}
 }
 
 document.getElementById("submit").addEventListener("click", (event) => {
-	event.preventDefault();
+	event.preventDefault ? event.preventDefault() : (event.returnValue = false);
 	if(validateForm()) {
 		postLogin(validateForm());
 	}
