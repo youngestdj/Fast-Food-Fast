@@ -32,7 +32,6 @@ const getOrders = async (userId) => {
     const jsonData = await response.json();
 
     const orders = jsonData.message;
-    console.log(orders);
     
     orderCount.innerHTML = `${orders.length} total orders`;
 
