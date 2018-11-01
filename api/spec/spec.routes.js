@@ -335,13 +335,13 @@ describe('Server', () => {
           expect(res.statusCode).toBe(200);
         });
     });
-    it('Should return 200 jessam2@joyson.com as email', async () => {
+    it('Should return jessam2@joyson.com as email', async () => {
       await request(app1)
         .get('/api/v1/user/2')
         .set('content-type', 'application/json')
         .set('x-access-token', token)
         .expect((res) => {
-          expect(res.body.message.email).toBe(200);
+          expect(res.body.message.email).toBe('jessam2@joyson.com');
         });
     });
 
