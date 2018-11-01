@@ -81,7 +81,7 @@ const postLogin = async (details) => {
 }
 
 document.getElementById("submit").addEventListener("click", (event) => {
-	event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+	event.preventDefault ? event.preventDefault() : event.returnValue = false;
 	if(validateForm()) {
 		postLogin(validateForm());
 	}

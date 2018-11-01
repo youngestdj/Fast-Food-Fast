@@ -127,7 +127,7 @@ const postOrder = async (order) => {
 }
 
 document.getElementById('checkout').addEventListener("click", (e) => {
-	e.preventDefault ? e.preventDefault() : (evenet.returnValue = false);
+	e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 	hideMessages();
 	if (validateOrder()) {
 		let order = getOrderEl((result) => {
