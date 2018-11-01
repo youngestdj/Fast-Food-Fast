@@ -42,6 +42,7 @@ const displayMenu = async () => {
     	append(foodItemHtml, amountHtml);
     	append(foodItemHtml, quantityHtml);
     	append(orderGroup, foodItemHtml);
+		orderGroup.innerHTML = "Getting menu...";
 
     });
    	});
