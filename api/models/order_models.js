@@ -3,14 +3,14 @@ const database = require('./database.js');
 const db = new database.Database();
 
 const getAllOrders = (callback) => {
-  const query = 'SELECT id, order_items, status, amount, user_id, time FROM orders';
+  const query = 'SELECT id, order_items, status, amount, user_id, time FROM orders ORDER BY id DESC';
   db.client.query(query)
     .then((result) => {
       callback(result.rows);
     });
 };
 const getUserOrders = (userId, callback) => {
-  const query = `SELECT id, order_items, status, amount, user_id, time FROM orders WHERE user_id=${userId}`;
+  const query = `SELECT id, order_items, status, amount, user_id, time FROM orders WHERE user_id=${userId} ORDER BY id DESC`;
   db.client.query(query)
     .then((result) => {
       callback(result.rows);
