@@ -144,5 +144,4 @@ document.getElementById('checkout').addEventListener("click", (e) => {
 user(result => {
     const username = document.getElementById('username');
     username.innerHTML = `${result.firstname} ${result.lastname}`;
-    getOrders(result.id);
 })
