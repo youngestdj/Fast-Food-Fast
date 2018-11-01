@@ -15,6 +15,7 @@ require('./api/routes/order_routes.js')(app);
 require('./api/routes/signup_routes.js')(app);
 require('./api/routes/login_routes.js')(app);
 require('./api/routes/menu_routes.js')(app);
+require('./api/routes/user_routes.js')(app);
 
 if (require.main === module) {
 	app.listen(process.env.PORT || 3001);
