@@ -34,6 +34,7 @@ const displayMenu = async () => {
     	quantityHtml.type = 'number';
     	quantityHtml.placeholder = 'quantity';
 
+		orderGroup.innerHTML = "";
 
     	let span = createNode('span');
     	span.innerHTML = food.food;
@@ -42,7 +43,6 @@ const displayMenu = async () => {
     	append(foodItemHtml, amountHtml);
     	append(foodItemHtml, quantityHtml);
     	append(orderGroup, foodItemHtml);
-		orderGroup.innerHTML = "Getting menu...";
 
     });
    	});
