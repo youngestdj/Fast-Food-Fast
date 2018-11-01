@@ -27,5 +27,5 @@ const extendCookie = (name, value, days) => {
 	document.cookie = `${name}=${value}; ${expires}; path=/`;
 }
 
-(!checkCookie('fffToken'))? window.location.replace("login.html") : extendCookie('fffToken', getCookie(), 30);
+(!checkCookie('fffToken'))? window.location.replace("login.html") : extendCookie('fffToken', getCookie(fffToken), 30);
 ;
