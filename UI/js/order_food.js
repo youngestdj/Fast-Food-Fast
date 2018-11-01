@@ -9,7 +9,6 @@ const user = (callback) => {
 
 const displayMenu = async () => {
 	let orderGroup = document.getElementById('order-group');
-	orderGroup.innerHTML = "Getting menu...";
 
    	menu.then((foods) => {
    		foods.map((food) => {
@@ -33,8 +32,6 @@ const displayMenu = async () => {
     	amountHtml.innerHTML = `&#8358;${price}`;
     	quantityHtml.type = 'number';
     	quantityHtml.placeholder = 'quantity';
-
-		orderGroup.innerHTML = "";
 
     	let span = createNode('span');
     	span.innerHTML = food.food;
