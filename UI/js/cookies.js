@@ -19,6 +19,7 @@ const getCookie = (cookieName) => {
 		return true;
 	} else return false;
 }
+console.log(getCookie);
 
 const extendCookie = (name, value, days) => {
 	const date = new Date();
